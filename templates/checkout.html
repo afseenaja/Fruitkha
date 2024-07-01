@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fruitkha</title>
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/icon type">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'bootstrap/js/bootstrap.min.js' %}"> -->
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+    <!-- owl carousal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js."></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+</head>
+<body>
+    <div class="row1" style="background-image: url('/static/images/breadcrumb-bg.jpg'); height: 450px; width: 100%;">
+        <div class="mask" style="background-color: rgba(29, 21, 108, 0.7); height: inherit;">
+            <div class="container-fluid">
+                {% include 'header.html' %}
+                <div class="rowa12">
+                    <h6><span>FRESH AND ORGANIC</span></h6>
+                    <h1><b>Check Out Product</b></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rowe1">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-8">
+                    <table>
+                        <thead>
+                            <tr>
+                              <th><button onclick="toggleContent('billing')"><i class="fa-solid fa-circle-check"></i>&emsp;<b>Billing Address</b></button></th>
+                            </tr>
+                        </thead>                      
+                        <tbody id="billing" style="display: table;">
+                            {% for i in update_add %}
+                            <tr>
+                                <td style="padding-top: 30px;">
+                                    <input type="text" name="name" id="" value="{{ i.name }}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="email" id="" value="{{ i.email }}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="address" id="" value="{{ i.address }}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="pincode" id="" value="{{ i.pincode }}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-bottom: 30px;">
+                                    <input  type="text" name="phone" id="" value="{{ i.phone_number }}">
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>                    
+                    <table>
+                        <tr>
+                            <th><button onclick="toggleContent('shipping')"><i class="fa-solid fa-circle-check"></i>&emsp;<b>Shipping Address</b></button></th>
+                        </tr>
+                        <tr style="display: none;" id="shipping">
+                            <td>
+                                {% for i in update_add %}
+                                <h6>{{ i.name }}</h6>
+                                <h6>{{ i.address}}</h6>
+                                <h6>{{ i.pincode }}</h6>
+                                <h6>{{ i.email}}</h6>
+                                <h6>{{ i.phone_number}}</h6>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    </table>                      
+                    <table>
+                        <tr>
+                            <th><button onclick="toggleContent('card')"><i class="fa-solid fa-circle-check"></i>&emsp;<b>Card Details</b></button></th>
+                        </tr>
+                        <tr style="display: none;" id="card">
+                            <td>Your card details go here.</td>
+                        </tr>
+                    </table>   
+                </div>                
+                <div class="col-sm-2">
+                    <table>
+                        <tr>
+                            <td class="th">Your order Details</td>
+                            <td class="th">Price</td>
+                        </tr>
+                        <tr>
+                            <td>Product</td>
+                            <td>Total</td>
+                        </tr>
+                        {% for i in cart_objects %}
+                            {% for j in fruits %}
+                                {% if i.item_id == j.id %}
+                                    <tr>
+                                        <td>{{ j.item_name }}</td>
+                                        <td>{{ i.total }}</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                        <!-- <tr>
+                            <td>Berry</td>
+                            <td>$70.00</td>
+                        </tr>
+                        <tr>
+                            <td>Lemon</td>
+                            <td>$35.00</td>
+                        </tr> -->
+                        <tr>
+                            <td>Subtotal</td>
+                            <td>{{ total_price }}</td>
+                        </tr>
+                        <tr>
+                            <td>Shipping</td>
+                            <td>{{ shipping }}</td>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <td>{{ grand_total }}</td>
+                        </tr>
+                    </table>
+                    <a href="{% url 'invoice' %}"><button>Place Order</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+    <script>
+        window.onscroll = function() { scrollFunction() };
+    
+    function scrollFunction() {
+        const topRow = document.getElementById("topRow");
+    
+        // Change background color when scrolling
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            topRow.style.backgroundColor = "black";
+        } else {
+            topRow.style.backgroundColor = "transparent";
+        }
+    }
+    function toggleSearch() {
+  var newDiv = document.getElementById('new');
+  if (newDiv.style.visibility === "hidden") {
+      newDiv.style.visibility = "visible";
+  } else {
+      newDiv.style.visibility = "hidden";
+  }
+}
+
+let currentContent = null;
+
+function toggleContent(contentId) {
+  const contentElement = document.getElementById(contentId);
+
+  if (currentContent) {
+    // Hide the previously displayed content
+    currentContent.style.display = 'none';
+  }
+
+  if (currentContent !== contentElement) {
+    // Show the clicked content if it's not already displayed
+    contentElement.style.display = 'table';
+    currentContent = contentElement;
+  } else {
+    // If the same button is clicked again, hide the content
+    currentContent = null;
+  }
+  if(contentId=='shipping'|| contentId=='card'){
+    var x=document.getElementById('billing');
+    x.style.display="none"
+  }
+}
+    </script>
+</body>
+</html>

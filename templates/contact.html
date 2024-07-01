@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fruitkha</title>
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/icon type">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'bootstrap/js/bootstrap.min.js' %}"> -->
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+    <!-- owl carousal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js."></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+</head>
+<body>
+    <div class="row1" style="background-image: url('/static/images/breadcrumb-bg.jpg'); height: 450px; width: 100%;">
+        <div class="mask" style="background-color: rgba(29, 21, 108, 0.7); height: inherit;">
+            <div class="container-fluid">
+
+                {% include 'header.html' %}
+
+                <div class="rowa12">
+                    <h6><span>GET 24/7 SUPPORT</span></h6>
+                    <h1><b>Contact us</b></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rowb1">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-9">
+                    <h3><b>Have you any question?</b></h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, ratione! Laboriosam est, assumenda. Perferendis, quo alias quaerat aliquid. Corporis ipsum minus voluptate? Dolore, esse natus!</p>
+                    <input type="text" name="name" id="" placeholder="Name">
+                    <input type="text" name="name" id="" placeholder="Email">
+                    <input type="text" name="name" id="" placeholder="Phone">
+                    <input type="text" name="name" id="" placeholder="Subject">
+                    <input type="text" name="name" id="message" placeholder="Message">
+                    <input type="submit" value="SUBMIT">
+                </div>
+                <div class="col-sm-3">
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <i class="fa-solid fa-map"></i>
+                        </div>
+                        <div class="col-sm-10">
+                            <h4><b>Shop Address</b></h4>
+                            <p>34/8, East Hukupara
+                                Gifirtok, Sadan.
+                                Country Name</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <i class="fa-regular fa-clock"></i>
+                        </div>
+                        <div class="col-sm-10">
+                            <h4><b>Shop Hours</b></h4>
+                            <p>MON - FRIDAY: 8 to 9 PM
+                                SAT - SUN: 10 to 8 PM</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <i class="fa-solid fa-address-book"></i>
+                        </div>
+                        <div class="col-sm-10">
+                            <h4><b>Contact</b></h4>
+                            <p>Phone: +00 111 222 3333
+                                Email: support@fruitkha.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rowb2">
+        <div class="container-fluid">
+            <div class="content">
+                <h1><i class="fa-solid fa-location-dot"></i><b> Find Our Location</b></h1>
+            </div>
+        </div>
+    </div>
+    <div class="rowb3">
+        <div class="container-fluid">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52864.82781804302!2d-118.36767808342134!3d34.09381500413846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bf07045279bf%3A0xf67a9a6797bdfae4!2sHollywood%2C%20Los%20Angeles%2C%20CA%2C%20USA!5e0!3m2!1sen!2sin!4v1702110969049!5m2!1sen!2sin" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+    
+    {% include 'footer.html' %}
+    <script>
+        window.onscroll = function() { scrollFunction() };
+    
+    function scrollFunction() {
+        const topRow = document.getElementById("topRow");
+    
+        // Change background color when scrolling
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            topRow.style.backgroundColor = "black";
+        } else {
+            topRow.style.backgroundColor = "transparent";
+        }
+    }
+    function toggleSearch() {
+  var newDiv = document.getElementById('new');
+  if (newDiv.style.visibility === "hidden") {
+      newDiv.style.visibility = "visible";
+  } else {
+      newDiv.style.visibility = "hidden";
+  }
+}
+    </script>
+</body>
+</html>

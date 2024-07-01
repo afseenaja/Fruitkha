@@ -1,0 +1,197 @@
+{% load static %}
+
+ <!-- owl carousal -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js."></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+<style>
+    /* .row9 */
+.row9{
+  height: fit-content;
+  width: 100%;
+  background-color: rgb(245, 245, 245);
+}
+.row9 .owl-carousel {
+  display: flex;
+  align-items: center;
+}
+
+.row9 .owl-item {
+  width: 25%; /* 4 items visible at once */
+  border: 2px solid transparent; /* Border for all items */
+}
+
+/* .row9 .owl-item.active {
+  border-color: #f00; /* Border color for the active item */
+/* } */ 
+
+.row9 .owl-item img {
+  width: 80px;
+  height: 180px;
+  padding: 45px 20px 20px 20px;
+}
+.row9 .owl-carousel .owl-item img{
+  width: 75%;
+  display: block;
+}
+/* row10 */
+.row10{
+  height: fit-content;
+  width: 100%;
+  
+  background-color: rgb(22, 22, 22);
+  color: white;
+}
+.row10 .row{
+  padding: 150px 30px;
+}
+.row10 .rowa1 .row{
+  height: fit-content;
+  padding: 0px 50px 20px 50px;
+}
+.row10 .container-fluid{
+  height: inherit;
+  width: inherit;
+}
+.row10 input[type="email"]{
+  height: 40px;
+  background-color: rgb(45, 45, 45);
+  border: none;
+}
+.row10 .col-sm-3 button{
+  height: 40px;
+  background-color: rgb(45, 45, 45);
+  color: #ff9101;
+  position: absolute;
+  margin: auto;
+  padding: 10px;
+}
+.row10 .col-sm-3 i{
+  position: relative;
+  margin: 0px 0px 0px 4px;
+  padding: 0px 0px 0px 0px;
+}
+.row10 .hr1{
+  width: 30px;
+  height: 3px;
+  background-color: #ff8d01;
+  text-align: center;
+  /* margin-left: 48%; */
+  margin: 25px 0px;
+  /* border-radius: 10px; */
+}
+.row10 a{
+  text-decoration: none;
+  line-height: 30px;
+  color: white;
+}
+.row10 a:hover{
+  text-decoration: none;
+  color: white;
+}
+.row10 hr{
+  color: white;
+  height: .5px;
+  width: 100%;
+  opacity: .1;
+}
+.row10 h1{
+  font-size: 36px;
+}
+</style>
+
+<div class="row9">
+    <div class="container-fluid">
+        <div class="owl-carousel">
+            <div class="item">
+                <img src="{% static 'images/company-logos/1.png' %}" alt="">
+            </div>
+            <div class="item">
+                <img src="{% static 'images/company-logos/2.png' %}" alt="">
+            </div>
+            <div class="item">
+                <img src="{% static 'images/company-logos/3.png' %}" alt="">
+            </div>
+            <div class="item">
+                <img src="{% static 'images/company-logos/4.png' %}" alt="">
+            </div>
+            <div class="item">
+                <img src="{% static 'images/company-logos/5.png' %}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row10">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3">
+                <h1>About us</h1>
+                <div class="hr1"></div>
+                <p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
+            </div>
+            <div class="col-sm-3">
+                <h1>Get in Touch</h1>
+                <div class="hr1"></div>
+                <p>34/8, East Hukupara, Gifirtok, Sadan.
+                    support@fruitkha.com
+                    +00 111 222 3333</p>
+            </div>
+            <div class="col-sm-3">
+                <h1>Pages</h1>
+                <div class="hr1"></div>
+                <a href="{% url 'home' %}"><span><b>></b></span> Home</a><br>
+                <a href="{% url 'about' %}"><span><b>></b></span> About</a><br>
+                <a href="{% url 'shop' %}"><span><b>></b></span> Shop</a><br>
+                <a href="{% url 'news' %}"><span><b>></b></span> News</a><br>
+                <a href="{% url 'contact' %}"><span><b>></b></span> Contact</a>
+            </div>
+            <div class="col-sm-3">
+                <h1>Subscribe</h1>
+                <div class="hr1"></div>
+                <p>Subscribe to our mailing list to get the latest updates.</p>
+                <input type="email" name="email" id="" placeholder="E-mail"><button type="button"><i class='fas fa-paper-plane'></i></button>
+            </div>
+        </div>
+        <hr>
+        <div class="rowa1">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h6>Copyrights © 2019 - <b>Imran Hossain</b>, All Rights Reserved.</h6>
+                </div>
+                <div class="col-sm-6" style="text-align: right;">
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-linkedin"></i>
+                    <i class="fa-brands fa-dribbble"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.owl-carousel').owlCarousel({
+            items: 4,
+            loop: true,
+            autoplay: true,
+            autoplayTimeout: 3000, // Change the time interval as needed
+            margin: 10,
+            nav: true,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:3
+                },
+                1000:{
+                    items:4
+                }
+            }
+        });
+    });
+</script>

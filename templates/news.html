@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fruitkha</title>
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/icon type">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'bootstrap/js/bootstrap.min.js' %}"> -->
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+    <!-- owl carousal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js."></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+</head>
+<body>
+    <div class="row1" style="background-image: url('/static/images/breadcrumb-bg.jpg'); height: 450px; width: 100%;">
+        <div class="mask" style="background-color: rgba(29, 21, 108, 0.7); height: inherit;">
+            <div class="container-fluid">
+                
+                {% include 'header.html' %}
+
+                <div class="rowa12">
+                    <h6><span>ORGANIC INFORMATION</span></h6>
+                    <h1><b>News Article</b></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row8">
+        <div class="container-fluid">
+            <div class="row" id="first" style="padding-bottom: 40px;">
+                <div class="col-sm-4">
+                    <div class="container">
+                        <div class="card" style="width:100%">
+                            <img class="card-img-top" src="{% static 'images/latest-news/news-bg-1.jpg' %}" alt="Card image">
+                            <div class="card-body">
+                                <h4 class="card-title"><b>You will vainly look for fruit on it in autumn.</b></h4>
+                                <p style="color: gray; font-size: smaller;"><i class='fas fa-user-alt'></i> &nbsp;Admin &nbsp; &nbsp;
+                                    <i class='fas fa-calendar'></i> &nbsp;27 December, 2019</p>
+                                <p class="card-text">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
+                                <a href="#" class="btn btn-primary stretched-link">Read more></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="container">
+                        <div class="card" style="width:100%">
+                            <img class="card-img-top" src="{% static 'images/latest-news/news-bg-2.jpg' %}" alt="Card image" style="width:100%">
+                            <div class="card-body">
+                                <h4 class="card-title"><b>A man's worth has its season, like tomato.</b></h4>
+                                <p style="color: gray;font-size: smaller;"><i class='fas fa-user-alt'></i> &nbsp;Admin &nbsp; &nbsp;
+                                    <i class='fas fa-calendar'></i> &nbsp;27 December, 2019</p>
+                                <p class="card-text">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
+                                <a href="#" class="btn btn-primary stretched-link">Read more></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="container">
+                        <div class="card" style="width:100%">
+                            <img class="card-img-top" src="{% static 'images/latest-news/news-bg-3.jpg' %}" alt="Card image" style="width:100%">
+                            <div class="card-body">
+                                <h4 class="card-title"><b>Good thoughts bear good fresh juicy fruit.</b></h4>
+                                <p style="color: gray;font-size: smaller;"><i class='fas fa-user-alt'></i> &nbsp;Admin &nbsp; &nbsp;
+                                    <i class='fas fa-calendar'></i> &nbsp;27 December, 2019</p>
+                                <p class="card-text">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
+                                <a href="#" class="btn btn-primary stretched-link">Read more></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="first">
+                <div class="col-sm-4">
+                    <div class="container">
+                        <div class="card" style="width:100%">
+                            <img class="card-img-top" src="{% static 'images/latest-news/news-bg-1.jpg' %}" alt="Card image">
+                            <div class="card-body">
+                                <h4 class="card-title"><b>Fall in love with the fresh orange</b></h4>
+                                <p style="color: gray; font-size: smaller;"><i class='fas fa-user-alt'></i> &nbsp;Admin &nbsp; &nbsp;
+                                    <i class='fas fa-calendar'></i> &nbsp;27 December, 2019</p>
+                                <p class="card-text">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
+                                <a href="#" class="btn btn-primary stretched-link">Read more></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="container">
+                        <div class="card" style="width:100%">
+                            <img class="card-img-top" src="{% static 'images/latest-news/news-bg-2.jpg' %}" alt="Card image" style="width:100%">
+                            <div class="card-body">
+                                <h4 class="card-title"><b>Why the berries always look delecious</b></h4>
+                                <p style="color: gray;font-size: smaller;"><i class='fas fa-user-alt'></i> &nbsp;Admin &nbsp; &nbsp;
+                                    <i class='fas fa-calendar'></i> &nbsp;27 December, 2019</p>
+                                <p class="card-text">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
+                                <a href="#" class="btn btn-primary stretched-link">Read more></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="container">
+                        <div class="card" style="width:100%">
+                            <img class="card-img-top" src="{% static 'images/latest-news/news-bg-3.jpg' %}" alt="Card image" style="width:100%">
+                            <div class="card-body">
+                                <h4 class="card-title"><b>Love for fruits are genuine of John Doe</b></h4>
+                                <p style="color: gray;font-size: smaller;"><i class='fas fa-user-alt'></i> &nbsp;Admin &nbsp; &nbsp;
+                                    <i class='fas fa-calendar'></i> &nbsp;27 December, 2019</p>
+                                <p class="card-text">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
+                                <a href="#" class="btn btn-primary stretched-link">Read more></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="rowbut">
+                <button onclick="news.html"><b>Prev</b></button>
+                <button><b>1</b></button>
+                <button style="background-color:#ff8d01;"><b>2</b></button>
+                <button><b>3</b></button>
+                <button><b>Next</b></button>
+            </div>
+        </div>
+    </div>
+    
+    {% include 'footer.html' %}
+    <script>
+        window.onscroll = function() { scrollFunction() };
+    
+    function scrollFunction() {
+        const topRow = document.getElementById("topRow");
+    
+        // Change background color when scrolling
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            topRow.style.backgroundColor = "black";
+        } else {
+            topRow.style.backgroundColor = "transparent";
+        }
+    }
+    function toggleSearch() {
+  var newDiv = document.getElementById('new');
+  if (newDiv.style.visibility === "hidden") {
+      newDiv.style.visibility = "visible";
+  } else {
+      newDiv.style.visibility = "hidden";
+  }
+}
+    </script>
+</body>
+</html>

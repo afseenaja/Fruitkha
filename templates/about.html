@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fruitkha</title>
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/icon type">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'bootstrap/js/bootstrap.min.js' %}"> -->
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+    <!-- carousal -->
+    <!-- <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+    <!-- carousal -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- owl carousal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js."></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <style>
+        .row7{
+            background-image: url('/static/images/1.jpg');
+        }
+    </style>
+</head>
+<body>
+    <div class="row1" style="background-image: url('/static/images/breadcrumb-bg.jpg'); height: 450px; width: 100%;">
+        <div class="mask" style="background-color: rgba(29, 21, 108, 0.7); height: inherit;">
+            <div class="container-fluid">
+                {% include 'header.html' %}
+                <div class="rowa12">
+                    <h6><span>WE SALE FRESH FRUITS</span></h6>
+                    <h1 style="font-size: 60px;font-weight: 900;"><b>About Us</b></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="rowa2">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-7" id="col1">
+                <h1><b>Why <span>Fruitkha</span></b></h1>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <i class='fa fa-shipping-fast'></i>
+                    </div>
+                    <div class="col-sm-4">
+                        <h5><b>Home Delivery</b></h5>
+                        <p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+                    </div>
+                    <div class="col-sm-2">
+                        <i class='fa fa-money'></i>
+                    </div>
+                    <div class="col-sm-4">
+                        <h5><b>Best Price</b></h5>
+                        <p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <i class='fa fa-suitcase'></i>
+                    </div>
+                    <div class="col-sm-4">
+                        <h5><b>Custom Box</b></h5>
+                        <p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+                    </div>
+                    <div class="col-sm-2">
+                        <i class='fa fa-refresh'></i>
+                    </div>
+                    <div class="col-sm-4">
+                        <h5><b>Quick Refund</b></h5>
+                        <p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <img src="{% static 'images/feature-bg.jpg' %}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row7">
+    <div class="container-fluid">
+        <h1><b>December sale is on!<br>
+            with big <span>Discount...</span></b></h1>
+        <span style="display: flex; flex-direction: row;">
+        <span style="padding-top: 6px;color: black;display: flex;flex-direction: column;line-height: 26px;font-size: 25px;">
+            <p>Sale!<br>Upto</p>
+            </span>
+        <span style="font-size: 50px;"><b>50%</b></span>
+        <span style="padding-left: 2px;color: black;padding-top: 35px;font-size: 19px;">off</span>
+        </span>
+        <br>
+        <button type="button">Shop Now</button>
+    </div>
+</div>
+<div class="rowa3">
+    <div class="container-fluid">
+        <h1><b>Our <span>Team</span></b></h1>
+        <div class="hr"></div>
+        <p class="para">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="{% static 'images/team/team-1.jpg' %}" alt="">
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <h4><b>Jimmy Doe</b></h4>
+                <p>Farmer</p>
+            </div>
+            <div class="col-sm-4">
+                <img src="{% static 'images/team/team-2.jpg' %}" alt="">
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <h4><b>Marry Doe</b></h4>
+                <p>Farmer</p>
+            </div>
+            <div class="col-sm-4">
+                <img src="{% static 'images/team/team-3.jpg' %}" alt="">
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <h4><b>Simon Joe</b></h4>
+                <p>Farmer</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row5">
+    <div class="container-fluid">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="{% static 'images/avaters/avatar1.png' %}" alt="food">
+                    <h3><b>Saira Hakhim</b></h3>
+                    <h5><b>Local shop owner</b></h5>
+                    <p>" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate consequuntur ducimus reiciendis velit nemo omnis sit vitae molestiae aspernatur. Placeat aspernatur, quo illo praesentium omnis ab recusandae iste id! Sunt. "</p>
+                    <i class="fa fa-quote-right"></i>
+                </div>
+                <div class="item">
+                    <img src="{% static 'images/avaters/avatar2.png' %}" alt="food">
+                    <h3><b>David Niph</b></h3>
+                    <h5><b>Local shop owner</b></h5>
+                    <p>" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate consequuntur ducimus reiciendis velit nemo omnis sit vitae molestiae aspernatur. Placeat aspernatur, quo illo praesentium omnis ab recusandae iste id! Sunt. "</p>
+                    <i class="fa fa-quote-right"></i>
+                </div>
+                <div class="item">
+                    <img src="{% static 'images/avaters/avatar3.png' %}" alt="food">
+                    <h3><b>Jacob Sikim</b></h3>
+                    <h5><b>Local shop owner</b></h5>
+                    <p>" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate consequuntur ducimus reiciendis velit nemo omnis sit vitae molestiae aspernatur. Placeat aspernatur, quo illo praesentium omnis ab recusandae iste id! Sunt. "</p>
+                    <i class="fa fa-quote-right"></i>
+                </div>
+            </div>
+        </div>  
+    </div>   
+</div>
+{% include 'footer.html' %}
+<script>
+    window.onscroll = function() { scrollFunction() };
+
+function scrollFunction() {
+    const topRow = document.getElementById("topRow");
+
+    // Change background color when scrolling
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        topRow.style.backgroundColor = "black";
+    } else {
+        topRow.style.backgroundColor = "transparent";
+    }
+}
+function toggleSearch() {
+  var newDiv = document.getElementById('new');
+  if (newDiv.style.visibility === "hidden") {
+      newDiv.style.visibility = "visible";
+  } else {
+      newDiv.style.visibility = "hidden";
+  }
+}
+</script>
+</body>
+</html>

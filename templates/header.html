@@ -1,0 +1,388 @@
+
+{% load static %}
+  <style>
+  
+button{
+  width: fit-content;
+  background-color: #f28500;
+  color: white;
+  border: 1px solid #f28500;
+  padding: 20px;
+  border-radius: 2%;
+}
+span{
+  color:#f28500;
+}
+.row1{
+    height: 600px;
+    width: 100%;
+    content:'';
+    background-image: url(static/images/hero-bg.jpg);
+    background-size: cover;
+    background-repeat:  no-repeat;
+    background-position:  center;
+    /* filter:grayscale(50%); */
+    /* position: absolute;
+    top:0px;
+    left: 0px;
+    width:100%;
+    height:100%;
+    z-index:-1; */
+    /* opacity: 0.5; */
+    text-align: center;
+    color: white;
+    /* padding-top: 20px; */
+
+}
+.row1 .row{
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  width: 100%;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  z-index: 1000;
+}
+.top-row.scrolled {
+  background-color: black;
+  z-index: 100000;
+}
+.row1 .row.scrolled{
+  background-color: black;
+}
+.row1 .navbar ul{
+  display: block;
+  display: flex;
+  flex-direction: row;
+}
+.row1 .drop{
+  display: none;
+}
+.row1 .main:hover, .row1 li:hover,.row1 .main:hover{
+  display: block;
+  display: flex;
+  flex-direction: column;
+}
+.row1 .container-fluid{
+    height: 100%;
+    width: 100%;
+}
+.row1 img{
+   height: 53px;
+   width: 170px;
+   padding: 2%;
+   object-fit: cover;
+   margin-top: 10px;
+}
+/* .row1 .navbar{
+  /* background-color: transparent; */
+  /* color: white;
+} */
+nav {
+  background-color: transparent;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  text-decoration: none;
+  
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 15px 20px;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+nav a:hover {
+  /* background-color: #555; */
+  color: #ff9101;
+  text-decoration: none;
+}
+
+/* Dropdown styles */
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  width: 150px;
+  border-radius: 10px;
+  /* color: rgb(55, 55, 55); */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  color: gray;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: rgb(110, 110, 110);
+  padding: 12px 16px;
+  display: block;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: white;
+}
+  .row1 .container-fluid .row12{
+    text-align: center;
+    padding-top: 15%;
+    color: white;
+  }
+  .row1 .container-fluid .row12 button{
+    color: white;
+    border: 2px solid #f28500;
+    padding: 10px 25px;
+    border-radius: 30px;
+    margin: 5px;
+  }
+  .row1 .container-fluid .row12 h6{
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 6px;
+  }
+  .row1 .container-fluid .row12 h1{
+    font-size: 60px;
+    font-weight: 900;
+    padding-bottom: 20px;
+  }
+  .row1 .container-fluid .row12 .but1:hover{
+    background-color:rgb(40, 40, 40);
+    
+  }
+  .row1 .row12 .but2:hover{
+    background-color:#f28500 ;
+  }
+  .row1 .row .col-sm-2 a{
+    color: white;
+    text-decoration: none;
+  }
+  .row1 .row .col-sm-2 i{
+    margin: 0px;
+    padding: 20px;
+  }
+  .row1 .col-sm-2 .srch{
+    background-color: transparent;
+    font-size: 15px;
+    width: inherit;
+    height: inherit;
+    border: none;
+}
+.row1 .new{
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100%;
+    height: fit-content;
+    z-index: 2000;
+    position: fixed;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+}
+.row1 .search{
+    width: 100%;
+    height: fit-content;
+    padding: 150px 200px 300px 200px;
+    text-align: center;
+}
+.row1 .new .close{
+    margin-left: 90%;
+    padding: 35px;
+    
+}
+.row1 .new .close button{
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+.row1 .search input[type="text"]{
+    width: 70%;
+    border: none;
+    border-bottom: 1px solid orange;
+    background-color: transparent;
+    height: 100px;
+    font-size: 50px;
+    text-align: center;
+    color: white;
+    font-weight: 900;
+}
+::-webkit-input-placeholder{
+  color: white;
+}
+.row1 .search button{
+    width: fit-content;
+    height: fit-content;
+    padding: 20px;
+    border-radius: 30px;
+    margin-top: 40px;
+    
+}
+.row1 .search h2{
+  letter-spacing: 4px;
+  padding: 20px;
+}
+.rowa12{
+  padding-top: 17%;
+}
+.row1 .rowa12 h6 {
+  font-size: 12px;
+  letter-spacing: 6px;
+}
+.row1 .row .col-sm-3 a{
+    color: white;
+    text-decoration: none;
+  }
+  .row1 .row .col-sm-3 i{
+    margin: 0px;
+    padding: 20px;
+  }
+  .row1 .col-sm-3 .srch{
+    background-color: transparent;
+    font-size: 15px;
+    width: inherit;
+    height: inherit;
+    border: none;
+}
+
+.row1 .col-sm-3 .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.row1 .col-sm-3 .dropdown-content a {
+  color: rgb(110, 110, 110);
+  padding: 12px 16px;
+  display: block;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.row1 .col-sm-3 .dropdown-content a:hover {
+  background-color: white;
+}
+</style>
+<header>
+          <div class="row" id="topRow">
+              <div class="col-sm-3">
+                  <img src="{% static 'images/logo.png' %}" alt="">
+              </div>
+              {% if user.is_active %}
+              <div class="col-sm-6">
+                  <nav>
+                      <div class="dropdown">
+                          <a href="{% url 'user_home' %}"><span>Home</span></a>
+                          <div class="dropdown-content">
+                              <a href="{% url 'user_home' %}">Static Home</a>
+                              <a href="#">Slider Home</a>
+                          </div>
+                      </div>
+                      <a href="{% url 'about' %}">About</a>
+                      <div class="dropdown">
+                          <a href="#">Pages</a>
+                          <div class="dropdown-content">
+                              <a href="{% url 'notfound' %}">404</a>
+                              <a href="{% url 'about' %}">About</a>
+                              <a href="{% url 'cart' %}">Cart</a>
+                              <a href="{% url 'checkout' %}">Check out</a>
+                              <a href="{% url 'contact' %}">Contact</a>
+                              <a href="{% url 'news' %}">News</a>
+                              <a href="{% url 'shop' %}">Shop</a>
+                          </div> 
+                      </div>
+                      <div class="dropdown">
+                          <a href="{% url 'news' %}">News</a>
+                          <div class="dropdown-content">
+                              <a href="{% url 'news' %}">News</a>
+                              <a href="#">Single News</a>
+                          </div>
+                      </div>
+                      <a href="{% url 'contact' %}">Contact</a>
+                      <div class="dropdown">
+                          <a href="{% url 'shop' %}">Shop</a>
+                          <div class="dropdown-content">
+                              <a href="{% url 'shop' %}">Shop</a>
+                              <a href="{% url 'checkout' %}">Check Out</a>
+                              <a href="#">Single Prodcut</a>
+                              <a href="{% url 'cart' %}">Cart</a>
+                          </div>
+                      </div>
+                  </nav>
+              </div>
+              <div class="col-sm-3">
+                  <a href="{% url 'cart' %}"><i class='fas fa-shopping-cart'></i></a>
+                  <div class="dropdown">
+                    <a href=""><i class="fa-solid fa-user"> {{ request.user.name }}</i></a>
+                    <div class="dropdown-content" style="color: black;">
+                        <a href="">My Profile</a>
+                        <a href="{% url 'logout' %}">LOGOUT</a>
+                    </div>
+                  </div>
+                  
+                  <i class='fas fa-search'></i>
+              </div>
+              {% else %}
+              <div class="col-sm-7">
+                <nav>
+                    <div class="dropdown">
+                        <a href="{% url 'home' %}"><span>Home</span></a>
+                        <div class="dropdown-content">
+                            <a href="{% url 'home' %}">Static Home</a>
+                            <a href="#">Slider Home</a>
+                        </div>
+                    </div>
+                    <a href="{% url 'about' %}">About</a>
+                    <div class="dropdown">
+                        <a href="#">Pages</a>
+                        <div class="dropdown-content">
+                            <a href="{% url 'notfound' %}">404</a>
+                            <a href="{% url 'about' %}">About</a>
+                            <a href="{% url 'cart' %}">Cart</a>
+                            <a href="{% url 'checkout' %}">Check out</a>
+                            <a href="{% url 'contact' %}">Contact</a>
+                            <a href="{% url 'news' %}">News</a>
+                            <a href="{% url 'shop' %}">Shop</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <a href="{% url 'news' %}">News</a>
+                        <div class="dropdown-content">
+                            <a href="{% url 'news' %}">News</a>
+                            <a href="#">Single News</a>
+                        </div>
+                    </div>
+                    <a href="{% url 'contact' %}">Contact</a>
+                    <div class="dropdown">
+                        <a href="{% url 'shop' %}">Shop</a>
+                        <div class="dropdown-content">
+                            <a href="{% url 'shop' %}">Shop</a>
+                            <a href="{% url 'checkout' %}">Check Out</a>
+                            <a href="#">Single Prodcut</a>
+                            <a href="{% url 'cart' %}">Cart</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-sm-2">
+                <a href="{% url 'cart' %}"><i class='fas fa-shopping-cart'></i></a>
+                <a href="{% url 'login' %}"><i class="fa-solid fa-user"></i></a>
+                <i class='fas fa-search'></i>
+            </div>
+            {% endif %}
+          </div>
+          
+</header>
+
+
+
+
+

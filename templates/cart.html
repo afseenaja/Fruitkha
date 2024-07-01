@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fruitkha</title>
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/icon type">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap/js/bootstrap.min.js' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+    <!-- owl carousal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js."></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+   
+</head>
+<body>
+    <div class="row1" style="background-image: url('/static/images/breadcrumb-bg.jpg'); height: 450px; width: 100%;">
+        <div class="mask" style="background-color: rgba(29, 21, 108, 0.7); height: inherit;">
+            <div class="container-fluid">
+
+                {% include 'header.html' %}
+                
+                <div class="rowa12">
+                    <h6><span>FRESH AND ORGANIC</span></h6>
+                    <h1><b>Cart</b></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rowd1">
+        <div class="container-fluid">
+            {% if cart_object %}
+            <div class="row">
+                <div class="col-sm-8">
+                    <table>
+                        <tr>
+                            <td class="th"></td>
+                            <td class="th">Product Image</td>
+                            <td class="th">Name</td>
+                            <td class="th">Price</td>
+                            <td class="th">Quantity</td>
+                            <td class="th">total</td>
+                        </tr>
+                        {% for i in cart_object %}
+                        {% for j in food_details %}
+                        {% if i.item_id == j.id %}
+                        <tr>
+                            <td><a href="{% url 'delete_cart_item' i.id %}" style="color: black;"><i class="fa-regular fa-rectangle-xmark"></i></a></td>
+                            <td><img src="{{ j.image.url }}" alt=""></td>
+                            <td>{{ j.item_name }}</td>
+                            <td>{{ j.price }}</td>
+                            <td><input type="number" name="" id="" value="{{ i.quantity }}"></td>
+                            <td>{{ i.total }}</td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                        {% endfor %}
+                       
+                    </table>
+                </div>
+                <div class="col-sm-4">
+                    <table class="tleft">
+                        <tr>
+                            <td class="th">Total</td>
+                            <td class="th">Price</td>
+                        </tr>
+                        <tr>
+                            <td class="td1"><b>Subtotal:</b></td>
+                            <td>{{ total_price }}</td>
+                        </tr>
+                        <tr>
+                            <td class="td1"><b>Shipping:</b></td>
+                            <td>{{ shipping }}</td>
+                        </tr>
+                        <tr>
+                            <td class="td1"><b>Total:</b></td>
+                            <td>{{ grand_total }}</td>
+                        </tr>
+                    </table>
+                    <a href="{% url 'shop' %}"><button>Update Cart</button></a>
+                    <a href="{% url 'checkout' %}"><button>Checkout</button></a>
+                    <h4 style="padding-bottom: 15px;">Apply Coupon</h4>
+                    <input type="text" name="" id="" placeholder="Coupen">
+                    <button style="color: black;"><B>APPLY</B></button>
+                </div>
+            </div>
+            {% else %}
+            <div class="row"> 
+                <div class="col-md-12">
+                    <div class="card">
+                        
+                        <div class="card-body cart">
+                            <div class="col-sm-12 empty-cart-cls text-center">
+                                <img src="{% static 'images\11329060.png' %}" width="130" height="130" class="img-fluid mb-4 mr-3">
+                                <h3><strong>Your Cart is Empty</strong></h3>
+                                <h4>Add something to make me happy :)</h4>
+                                <a href="#" class="btn btn-primary cart-btn-transform m-3" data-abc="true" style="background-color: #f28500; border: none;">continue shopping</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% include 'footer.html' %}
+<script>
+    window.onscroll = function() { scrollFunction() };
+
+function scrollFunction() {
+    const topRow = document.getElementById("topRow");
+
+    // Change background color when scrolling
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        topRow.style.backgroundColor = "black";
+    } else {
+        topRow.style.backgroundColor = "transparent";
+    }
+}
+function toggleSearch() {
+  var newDiv = document.getElementById('new');
+  if (newDiv.style.visibility === "hidden") {
+      newDiv.style.visibility = "visible";
+  } else {
+      newDiv.style.visibility = "hidden";
+  }
+}
+</script>
+</body>
+</html>

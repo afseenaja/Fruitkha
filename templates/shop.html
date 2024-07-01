@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fruitkha</title>
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/icon type">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'bootstrap/js/bootstrap.min.js' %}"> -->
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+    <!-- owl carousal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js."></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+</head>
+<body>
+    <div class="row1" style="background-image: url('/static/images/breadcrumb-bg.jpg'); height: 450px; width: 100%;">
+        <div class="mask" style="background-color: rgba(39, 38, 38, 0.59); height: inherit;">
+            <div class="container-fluid">
+                
+                {% include 'header.html' %}
+
+                <div class="rowa12">
+                    <h6><span>FRESH AND ORGANIC</span></h6>
+                    <h1><b>Shop</b></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rowc1">
+        <div class="container-fluid">
+            <div class="buttons" id="myDIV">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" data-filter="All" onclick="filterSelection('All',this)">All</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" data-filter="Strawberry" onclick="filterSelection('Strawberry',this)">Strawberry</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" data-filter="Berry" onclick="filterSelection('Berry',this)">Berry</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" data-filter="Lemon" onclick="filterSelection('Lemon',this)">Lemon</button>
+                    </li>
+                  </ul>
+                <!-- <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="pills-All-tab" data-bs-toggle="pill" data-bs-target="#pills-All" type="button" role="tab" aria-controls="pills-All" aria-selected="true" onclick="filterSelection('All')">All</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="pills-strawberry-tab" data-bs-toggle="pill" data-bs-target="#pills-strawberry" type="button" role="tab" aria-controls="pills-strawberry" aria-selected="false" onclick="filterSelection('Strawberry')">Strawberry</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="pills-berry-tab" data-bs-toggle="pill" data-bs-target="#pills-berry" type="button" role="tab" aria-controls="pills-berry" aria-selected="false" onclick="filterSelection('Berry')">Berry</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-lemon-tab" data-bs-toggle="pill" data-bs-target="#pills-lemon" type="button" role="tab" aria-controls="pills-lemon" aria-selected="false" onclick="filterSelection('Lemon')">Lemon</button>
+                      </li>                   
+                  </ul> -->
+            </div>
+        </div>
+    </div>
+    <div class="row3 rowx1" style="display: flex; flex-wrap: wrap;">
+        <div class="container-fluid" id="rowcf">
+            <!-- <div class="row" id="rowa">
+                <div class="col-sm-4" style="position: relative;"> -->
+                  {% for i in fruits %}
+                    <div class="fruit card" id="Strawberry">
+                        <img src="{{ i.image.url }}" alt="" style="width:100%">
+                        <h4><b>{{ i.item_name }}</b></h4>
+                        <p>Per kg</p>
+                        <h2><b>{{ i.price }}</b></h2>
+                        <a href="{% url 'add_to_cart' i.id %}"><p><button><i class='fas fa-shopping-cart'></i> Add to Cart</button></p></a>
+                      </div>
+                      {% endfor %}
+                
+            <div class="row" id="rowbut">
+                <button onclick="news.html"><b>Prev</b></button>
+                <button><b>1</b></button>
+                <button style="background-color:#ff8d01;"><b>2</b></button>
+                <button><b>3</b></button>
+                <button><b>Next</b></button>
+            </div>
+        </div>
+    </div>
+   
+    {% include 'footer.html' %}
+    <script>
+      window.onscroll = function() { scrollFunction() };
+  
+  function scrollFunction() {
+      const topRow = document.getElementById("topRow");
+  
+      // Change background color when scrolling
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          topRow.style.backgroundColor = "black";
+      } else {
+          topRow.style.backgroundColor = "transparent";
+      }
+  }
+  function toggleSearch() {
+  var newDiv = document.getElementById('new');
+  if (newDiv.style.visibility === "hidden") {
+      newDiv.style.visibility = "visible";
+  } else {
+      newDiv.style.visibility = "hidden";
+  }
+}
+// filter
+function filterSelection(filter, button) {
+  const cards = document.querySelectorAll('.row3 .card');
+
+  // Remove active class from all buttons
+  document.querySelectorAll('.nav-link').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  // Add active class to the clicked button
+  button.classList.add('active');
+
+  cards.forEach(card => {
+    const fruitType = card.id.toLowerCase();
+    const showCard = filter === 'All' || fruitType.includes(filter.toLowerCase());
+    
+    // Set the display property to 'inline-block' for filtered cards
+    card.style.display = showCard ? 'inline-block' : 'none';
+  });
+}
+  </script>
+</body>
+</html>

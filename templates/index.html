@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fruitkha</title>
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/icon type">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'bootstrap/js/bootstrap.min.js' %}"> -->
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <!-- carousal -->
+    <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- fafa -->
+    <script src="https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+    <!-- bootstrap for card -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <!-- carousal -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- owl carousal -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js."></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">  
+  <style>
+    *{
+  margin: 0;
+  padding: 0;
+}
+
+button{
+  width: fit-content;
+  background-color: #f28500;
+  color: white;
+  border: 1px solid #f28500;
+  padding: 20px;
+  border-radius: 2%;
+}
+span{
+  color:#f28500;
+}
+.row1{
+    height: 600px;
+    width: 100%;
+    content:'';
+    /* background-image: url("{% static '../images/hero-bg.jpg' %}"); */
+    background-size: cover;
+    background-repeat:  no-repeat;
+    background-position:  center;
+    /* filter:grayscale(50%); */
+    /* position: absolute;
+    top:0px;
+    left: 0px;
+    width:100%;
+    height:100%;
+    z-index:-1; */
+    /* opacity: 0.5; */
+    text-align: center;
+    color: white;
+    /* padding-top: 20px; */
+
+}
+.row1 .row{
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  width: 100%;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  z-index: 1000;
+}
+.top-row.scrolled {
+  background-color: black;
+}
+.row1 .navbar ul{
+  display: block;
+  display: flex;
+  flex-direction: row;
+}
+.row1 .drop{
+  display: none;
+}
+.row1 .main:hover, .row1 li:hover,.row1 .main:hover{
+  display: block;
+  display: flex;
+  flex-direction: column;
+}
+.row1 .container-fluid{
+    height: 100%;
+    width: 100%;
+}
+.row1 img{
+   height: 53px;
+   width: 170px;
+   padding: 2%;
+   object-fit: cover;
+   margin-top: 10px;
+}
+/* .row1 .navbar{
+  /* background-color: transparent; */
+  /* color: white;
+} */
+nav {
+  background-color: transparent;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  text-decoration: none;
+  
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 15px 20px;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+nav a:hover {
+  /* background-color: #555; */
+  color: #ff9101;
+  text-decoration: none;
+}
+
+/* Dropdown styles */
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  width: 150px;
+  border-radius: 10px;
+  /* color: rgb(55, 55, 55); */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  color: gray;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: rgb(110, 110, 110);
+  padding: 12px 16px;
+  display: block;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: white;
+}
+  .row1 .container-fluid .row12{
+    text-align: center;
+    padding-top: 15%;
+    color: white;
+  }
+  .row1 .container-fluid .row12 button{
+    color: white;
+    border: 2px solid #f28500;
+    padding: 10px 25px;
+    border-radius: 30px;
+    margin: 5px;
+  }
+  .row1 .container-fluid .row12 h6{
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 6px;
+  }
+  .row1 .container-fluid .row12 h1{
+    font-size: 60px;
+    font-weight: 900;
+    padding-bottom: 20px;
+  }
+  .row1 .container-fluid .row12 .but1:hover{
+    background-color:rgb(40, 40, 40);
+    
+  }
+  .row1 .row12 .but2:hover{
+    background-color:#f28500 ;
+  }
+  .row1 .row .col-sm-2 a{
+    color: white;
+    text-decoration: none;
+  }
+  .row1 .row .col-sm-2 i{
+    margin: 0px;
+    padding: 20px;
+  }
+  .row1 .col-sm-2 .srch{
+    background-color: transparent;
+    font-size: 15px;
+    width: inherit;
+    height: inherit;
+    border: none;
+}
+.row1 .new{
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100%;
+    height: fit-content;
+    z-index: 2000;
+    position: fixed;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+}
+.row1 .search{
+    width: 100%;
+    height: fit-content;
+    padding: 150px 200px 300px 200px;
+    text-align: center;
+}
+.row1 .new .close{
+    margin-left: 90%;
+    padding: 35px;
+    
+}
+.row1 .new .close button{
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+.row1 .search input[type="text"]{
+    width: 70%;
+    border: none;
+    border-bottom: 1px solid orange;
+    background-color: transparent;
+    height: 100px;
+    font-size: 50px;
+    text-align: center;
+    color: white;
+    font-weight: 900;
+}
+::-webkit-input-placeholder{
+  color: white;
+}
+.row1 .search button{
+    width: fit-content;
+    height: fit-content;
+    padding: 20px;
+    border-radius: 30px;
+    margin-top: 40px;
+    
+}
+.row1 .search h2{
+  letter-spacing: 4px;
+  padding: 20px;
+}
+      /* row2 */
+.row2{
+    height: fit-content;
+    width: 100%;
+    text-align: center;
+    padding: 40px 0px ;
+    background-color: rgb(241, 241, 241);
+}
+.row2 .col-sm-3{
+  margin: 40px;
+}
+.row2 i{
+    font-size: 30px;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    text-decoration: none;
+    background-color: transparent;
+    color: #f28500;
+    border: dotted #f28500;
+    border-radius: 50%;
+    padding: 10px;
+    margin: auto;
+}
+.row3{
+    height: fit-content;
+    width: 100%;
+}
+.row3 .container-fluid{
+    height: 100%;
+    width: 100%;
+    
+    padding: 150px 50px;
+}
+.rowx3{
+  text-align: center;
+}
+.row3 .card{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: fit-content;
+  padding-bottom: 15px;
+}
+.row3 .card:hover{
+  border: transparent;
+  box-shadow: none;
+}
+.row3 .hr1{
+  width: 50px;
+  height: 4px;
+  background-color: #ff9101;
+  text-align: center;
+  margin-left: 48%;
+  margin-top: -9px;
+  border-radius: 10px;
+}
+.row3 .para{
+  padding-bottom: 100px;
+}
+.row3 button{
+  border-radius: 25px;
+  width: 150px;
+  height: fit-content;
+  color: white;
+  padding: 10px;
+}
+.row3 button:hover{
+  background-color: black;
+  color: #ff9101;
+  border: none;
+}
+.row4{
+  position: relative;
+    height: fit-content;
+    width: 100%;
+    text-align: left;
+    background-color: rgb(245, 245, 245);
+    padding: 100px 20px;
+    
+}
+.row4 .container-fluid{
+    height: inherit;
+    width: inherit;
+    color: black;
+    padding: 20px;
+}
+.row4 .row .col-sm-6 img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 0%;
+    border: none;
+}
+
+.row4 .round{
+  height:120px;
+  width: 120px;
+  background-color: #f28500;
+  border: 8px solid rgb(248, 187, 74);
+  border-radius: 50%;
+  text-align: center;
+  padding: 10px;
+  margin: -460px 0px 0px 100px;
+  position: absolute;
+  left: 16px;
+  
+
+}
+.row4 .col-sm-2{
+    border: 2px solid #f28500;
+    margin: 5px;
+    text-align: center;
+    padding-top: 5px;
+}
+.row4 .col-sm-2 h1{
+    color: #f28500;
+}
+.row4 button{
+    width: 25%;
+    height: fit-content;
+    background-color: #f28500;
+    color: white;
+    border: 1px solid #f28500;
+    padding: 10px;
+    border-radius: 25px;
+}
+
+/* row5 */
+.row5{
+  width: 100%;
+  height: fit-content;
+  /* padding: 200px 400px; */
+}
+.row5 .container-fluid{
+  padding: 200px 300px;
+  text-align: center;
+}
+.row5 img{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.row5 h5, .row5 p{
+  color: rgb(145, 145, 145);
+  padding: 10px;
+}
+.row5 p{
+  font-size: 20px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-style: italic;
+}
+.row5 .container-fluid .fa{
+  font-size: 40px;
+  color: lightgrey;
+}
+/* .... */
+
+
+.col-sm-6 img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  margin: auto;
+  border-radius: 0;
+  border: none;
+}
+
+/* row6 */
+.row6{
+  height: fit-content;
+  width: 100%;
+
+}
+.row6 .container-fluid{
+  height: 100%;
+  width:100%;
+}
+.row6 img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  filter: brightness(.7);
+  
+}
+
+.row6 button{
+  border-radius: 35px;
+}
+.row6 .container-fluid .row{
+  padding: 30px;
+}
+.row6 .container-fluid .row .col-sm-5{
+  padding-top: 5%;
+}
+.row6 .col-sm-6 a{
+  height: 100%;
+  width: 100%;
+}
+.row6 i{
+  font-size: 30px;
+  width: 65px;
+  height: 65px;
+  text-align: center;
+  text-decoration: none;
+  background-color: #f28500;
+  color: black;
+  border: solid #f28500;
+  border-radius: 50%;
+  padding: 17px;
+  position: absolute;
+  margin: 190px 0px 0px -300px;
+}
+/* row7 */
+.row7{
+  /* height: 300px; */
+  width: 100%;
+  background-image: url('/static/images/1.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding: 50px 25px;
+}
+.row7 button{
+  border-radius: 35px;
+}
+.row8{
+  width: 100%;
+  height: fit-content;
+  position: relative;
+  text-align: center;
+  padding: 100px 10px;
+}
+.row8 .container-fluid{
+  width: 100%;
+  height: 100%;
+}
+.row8 p{
+  padding: 20px 0px;
+}
+.row8 .col-sm-4{
+  height: fit-content;
+  width: 33.33%;
+}
+.row8 .col-sm-4 .container{
+  width: 100%;
+  height: 100%;
+}
+.row8 .col-sm-4 img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  
+}
+.row8 .card-img-top{
+  object-fit: cover;
+  
+}
+.row8 .newshd{
+  padding: 40px 350px;
+}
+.row8 .hr1{
+  width: 50px;
+  height: 4px;
+  background-color: #ff8d01;
+  text-align: center;
+  margin-left: 48%;
+  margin-top: -9px;
+  border-radius: 10px;
+}
+.row8 .card-body{
+    padding: 10px;
+}
+.row8 .card-text{
+  width: 100%;
+  height: fit-content;
+  
+}
+.row8 .row{
+  text-align: left;
+}
+.row8 .col-sm-4:hover{
+  border: transparent
+}
+.row8 .btn{
+  background-color: transparent;
+  color: black;
+  border: none;
+}
+.row8 .btn:hover{
+  background-color: transparent;
+  color: #f28500;
+}
+.row8 .card{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+}
+.row8 .card, .card img{
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+.row8 .card:hover{
+  border: none;
+  box-shadow: none;
+}
+.row8 .admin{
+  color: gray;
+}
+#but1{
+  width: 20%;
+  height:40px;
+  background-color: #f28500;
+  color: white;
+  border: 1px solid #f28500;
+  padding: 5px;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+  </style>              
+</head>
+<body>
+  
+
+  <div class="row1">
+    <div class="mask" style="background-color: rgba(74, 161, 214, 0.2); height: inherit;">
+        <div class="container-fluid">
+                
+            {% include 'header.html' %}
+                    
+                <div class="new" id="new">
+                    <div class="container-fluid">
+                        <div class="close">
+                            <button onclick="toggleSearch()"><i class="fa-solid fa-rectangle-xmark"></i></button>
+                        </div>
+                        <div class="search">
+                            <h2><b>SEARCH FOR:</b></h2> 
+                            <input type="text" name="" id="" placeholder="Keywords">
+                            <br>
+                            <button>Search <i class='fas fa-search'></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row12">
+                    <h6><span>FRESH & ORGANIC</span></h6>
+                    <h1>Delicious Seasonal Fruits</h1>
+                    <a href="{% url 'shop' %}"><button type="button" class="but1" style="background-color: #f28500;">Fruit Collection</button></a><a href="contact.html"><button type="button" class="but2" style="background-color: transparent;">Contact Us</button></a>
+                  </div>
+            </div>
+    
+            </div>
+        </div>
+    <div class="row2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="row">
+                        <div class="col">
+                            <i class='fa fa-shipping-fast'></i>
+                        </div>
+                        <div class="col">
+                            <h6><b>Free Shipping</b></h6>
+                            <p>When order above $60</p>
+                        </div>
+                    </div>  
+                </div>
+                <div class="col-sm-3">
+                    <div class="row">
+                        <div class="col">
+                            <i class='fa fa-phone-volume'></i>
+                        </div>
+                        <div class="col">
+                            <h6><b>24/7 Support</b></h6>
+                            <p>Get support all day</p>
+                        </div>
+                    </div>  
+                </div>
+                <div class="col-sm-3">
+                    <div class="row">
+                        <div class="col">
+                            <i class='fa fa-refresh'></i>
+                        </div>
+                        <div class="col">
+                            <h6><b>Refund</b></h6>
+                            <p>Get refund within 3 days</p>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row3 rowx3">
+        <div class="container-fluid">
+            <h1><b><span>Our</span> Products</b></h1>
+            <div class="hr1"></div>
+            <p class="para">Lorem ipsum dolor sit amet consectetur adipisicing elit.  Commodi error itaque.</p>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="card">
+                        <img src="{% static 'images/products/product-img-1.jpg' %}" alt="" style="width:100%">
+                        <h1>Strawberry</h1>
+                        <p>Per kg</p>
+                        <h2><b>85$</b></h2>
+                        <p><a href="{% url 'cart' %}"><button><i class='fas fa-shopping-cart'></i> Add to Cart</button></a></p>
+                      </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card">
+                        <img src="{% static 'images/products/product-img-2.jpg' %}" alt="" style="width:100%">
+                        <h1>Berry</h1>
+                        <p>Per kg</p>
+                        <h2><b>70$</b></h2>
+                        <p><a href="{% url 'cart' %}"><button><i class='fas fa-shopping-cart'></i> Add to Cart</button></a></p>
+                      </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card">
+                        <img src="{% static 'images/products/product-img-3.jpg' %}" alt="Denim Jeans" style="width:100%">
+                        <h1>Lemon</h1>
+                        <p>Per kg</p>
+                        <h2><b>35$</b></h2>
+                        <p><a href="{% url 'cart' %}"><button><i class='fas fa-shopping-cart'></i> Add to Cart</button></a></p>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row4">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <img src="{% static 'images/a.jpg' %}" alt="">
+                    <div class="round"><h3><b>30%</b></h3><p style="color: black;padding: 0;">off per kg</p></div>
+                </div>
+                <div class="col-sm-6">
+                    <h1><b><span>Deal</span> of the month</b></h1> 
+                    <h4>HIKAN STRWABERRY</h4>
+                    <br>
+                    <p>Quisquam minus maiores repudiandae nobis, minima saepe id, fugit ullam similique! Beatae, minima quisquam molestias facere ea. Perspiciatis unde omnis iste natus error sit voluptatem accusant</p>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <h1 id="day">00</h1>
+                            <p>Days</p>
+                        </div>
+                        <div class="col-sm-2">
+                            <h1 id="hour">00</h1>
+                            <p>Hours</p>
+                        </div>
+                        <div class="col-sm-2">
+                            <h1 id="min">00</h1>
+                            <p>Mins</p>
+                        </div>
+                        <div class="col-sm-2">
+                            <h1 id="sec">00</h1>
+                            <p>Secs</p>
+                        </div>
+                    </div>
+                    <br>
+                    <a href="{% url 'cart' %}"><button><i class='fas fa-shopping-cart'></i> Add to Cart</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row5">
+        <div class="container-fluid">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="{% static 'images/avaters/avatar1.png' %}" alt="food">
+                        <h3><b>Saira Hakhim</b></h3>
+                        <h5><b>Local shop owner</b></h5>
+                        <p>" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate consequuntur ducimus reiciendis velit nemo omnis sit vitae molestiae aspernatur. Placeat aspernatur, quo illo praesentium omnis ab recusandae iste id! Sunt. "</p>
+                        <i class="fa fa-quote-right"></i>
+                    </div>
+                    <div class="item">
+                        <img src="{% static 'images/avaters/avatar2.png' %}" alt="food">
+                        <h3><b>David Niph</b></h3>
+                        <h5><b>Local shop owner</b></h5>
+                        <p>" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate consequuntur ducimus reiciendis velit nemo omnis sit vitae molestiae aspernatur. Placeat aspernatur, quo illo praesentium omnis ab recusandae iste id! Sunt. "</p>
+                        <i class="fa fa-quote-right"></i>
+                    </div>
+                    <div class="item">
+                        <img src="{% static 'images/avaters/avatar3.png' %}" alt="food">
+                        <h3><b>Jacob Sikim</b></h3>
+                        <h5><b>Local shop owner</b></h5>
+                        <p>" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate consequuntur ducimus reiciendis velit nemo omnis sit vitae molestiae aspernatur. Placeat aspernatur, quo illo praesentium omnis ab recusandae iste id! Sunt. "</p>
+                        <i class="fa fa-quote-right"></i>
+                    </div>
+                </div>
+            </div>  
+        </div>   
+    </div>
+    <div class="row6">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <!-- <img src="img/abt.jpg" alt=""> -->
+                    <a href="https://youtu.be/SLmvdoxBOmA?si=ktT-F38-QU3Tdxlc">
+                        <img src="{% static 'images/abt.jpg' %}" alt="">
+                        <i class="fa-solid fa-play"></i>
+                    </a>
+                    <!-- <video style="background-image:url(../fruitika/img/abt.jpg); height: 400px; width: 100%;" src="https://youtu.be/SLmvdoxBOmA?si=ktT-F38-QU3Tdxlc"></video> -->
+                </div>
+                <div class="col-sm-5">
+                    <h6>Since Year 1999</h6>
+                    <h1><b>We are <span>Fruitkha</span></b></h1>
+                    <p>Etiam vulputate ut augue vel sodales. In sollicitudin neque et massa porttitor vestibulum ac vel nisi. Vestibulum placerat eget dolor sit amet posuere. In ut dolor aliquet, aliquet sapien sed, interdum velit. Nam eu molestie lorem.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente facilis illo repellat veritatis minus, et labore minima mollitia qui ducimus.</p>
+                    <a href="{% url 'about' %}"><button>Know More</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row7">
+        <div class="container-fluid">
+            <h1><b>December sale is on!<br>
+                with big <span>Discount...</span></b></h1>
+            <span style="display: flex; flex-direction: row;">
+            <span style="padding-top: 6px;color: black;display: flex;flex-direction: column;line-height: 26px;font-size: 25px;">
+                <p>Sale!<br>Upto</p>
+                </span>
+            <span style="font-size: 50px;"><b>50%</b></span>
+            <span style="padding-left: 2px;color: black;padding-top: 35px;font-size: 19px;">off</span>
+            </span>
+            <br>
+            <a href="{% url 'shop' %}"><button type="button">Shop Now</button></a>
+        </div>
+    </div>
+    <div class="row8">
+        <div class="container-fluid">
+            <h1><b><span>Our</span> News</b></h1>
+            <div class="hr1"></div>
+            <p class="newshd">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+            <div class="row" id="first">
+                <div class="col-sm-4">
+                    <div class="container">
+                        <div class="card" style="width:100%">
+                            <img class="card-img-top" src="{% static 'images/latest-news/news-bg-1.jpg' %}" alt="Card image">
+                            <div class="card-body">
+                                <h4 class="card-title"><b>You will vainly look for fruit on it in autumn.</b></h4>
+                                <p style="color: gray; font-size: smaller;"><i class='fas fa-user-alt'></i> &nbsp;Admin &nbsp; &nbsp;
+                                    <i class='fas fa-calendar'></i> &nbsp;27 December, 2019</p>
+                                <p class="card-text">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
+                                <a href="#" class="btn btn-primary stretched-link">Read more></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="container">
+                        <div class="card" style="width:100%">
+                            <img class="card-img-top" src="{% static 'images/latest-news/news-bg-2.jpg' %}" alt="Card image" style="width:100%">
+                            <div class="card-body">
+                                <h4 class="card-title"><b>A man's worth has its season, like tomato.</b></h4>
+                                <p style="color: gray;font-size: smaller;"><i class='fas fa-user-alt'></i> &nbsp;Admin &nbsp; &nbsp;
+                                    <i class='fas fa-calendar'></i> &nbsp;27 December, 2019</p>
+                                <p class="card-text">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
+                                <a href="#" class="btn btn-primary stretched-link">Read more></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="container">
+                        <div class="card" style="width:100%">
+                            <img class="card-img-top" src="{% static 'images/latest-news/news-bg-3.jpg' %}" alt="Card image" style="width:100%">
+                            <div class="card-body">
+                                <h4 class="card-title"><b>Good thoughts bear good fresh juicy fruit.</b></h4>
+                                <p style="color: gray;font-size: smaller;"><i class='fas fa-user-alt'></i> &nbsp;Admin &nbsp; &nbsp;
+                                    <i class='fas fa-calendar'></i> &nbsp;27 December, 2019</p>
+                                <p class="card-text">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae mattis nunc, egestas viverra eros.</p>
+                                <a href="#" class="btn btn-primary stretched-link">Read more></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="button" value="More news" id="but1" onclick="news.html">
+        </div>
+    </div>
+  
+    {% include 'footer.html' %}
+
+    <script>
+      window.onscroll = function() { scrollFunction() };
+  
+  function scrollFunction() {
+      const topRow = document.getElementById("topRow");
+  
+      // Change background color when scrolling
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          topRow.style.backgroundColor = "black";
+      } else {
+          topRow.style.backgroundColor = "transparent";
+      }
+  }
+  function toggleSearch() {
+  var newDiv = document.getElementById('new');
+  if (newDiv.style.visibility === "hidden") {
+      newDiv.style.visibility = "visible";
+  } else {
+      newDiv.style.visibility = "hidden";
+  }
+}
+  </script>
+</body>
+</html>
