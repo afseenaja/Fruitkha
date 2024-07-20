@@ -2,35 +2,89 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .models import *
 from django.shortcuts import get_object_or_404
-import datetime
+from datetime import datetime
+from django.utils import timezone
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 def Index(request):
     return render(request, 'index.html')
 
+@login_required
 def user_home(request):
     fruits = PRODUCT.objects.all()
+    offer_details = OFFER.objects.all()
+    count = NOTIFICATION.objects.filter(user_id=request.user, read=False).count()
+    # offer_det = OFFER.objects.filter()
+    for i in offer_details:
+        off_date = i.validity
+    format_date = off_date.strftime("%b %d %Y %H:%M:%S")
     return render(request, 'user_home.html', locals())
 def About(request):
-    return render(request, 'about.html')
+    count = NOTIFICATION.objects.filter(user_id=request.user, read=False).count()
+    return render(request, 'about.html',locals())
 
 def News(request):
-    return render(request, 'news.html')
+    count = NOTIFICATION.objects.filter(user_id=request.user, read=False).count()
+    return render(request, 'news.html',locals())
 
 def Contact(request):
-    return render(request, 'contact.html')
+    count = NOTIFICATION.objects.filter(user_id=request.user, read=False).count()
+    return render(request, 'contact.html',locals())
+
+def enquiry(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone_number = request.POST.get('phone')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        x = datetime.now()
+        contact = CONTACT.objects.create(name=name,
+                                         email=email,
+                                         phone_number=phone_number,
+                                         subject=subject,
+                                         message=message,
+                                         enquiry_time=x
+                                         )
+        contact.save()
+        admin_message = "You have a new message from {uname}".format(uname=request.user.name)
+        admin = User.objects.get(is_superuser=1)
+
+        NOTIFICATION.objects.create(user=admin,
+                                    text=admin_message,
+                                    read=False,
+                                    table_no=3)
+        return redirect(Contact)
+
 
 def NotFound(request):
     return render(request, '404.html')
 
+def dealofthemonth(request):
 
+    fruits = PRODUCT.objects.all()
+    offer_details = OFFER.objects.all().order_by('-id')
+    formatted_date = []
+    actual_price = []
+    for i in offer_details:
+        off_date = i.validity
+        format_date = off_date.strftime("%b %d %Y %H:%M:%S")
+        formatted_date.append(format_date)
+    for i in offer_details:
+        for j in fruits:
+            if i.item_id == j.id:
+                price = i.quantity * j.price
+                actual_price.append(price)
+    return render(request, 'dealofthemonth.html', locals())
 
 
 def Shop(request):
+    count = NOTIFICATION.objects.filter(user_id=request.user, read=False).count()
     fruits = PRODUCT.objects.all()
     return render(request, 'shop.html', locals())
 
-def admin_dashboard(request):
-    return render(request, 'admin_dashboard.html')
+
 
 
 def login_page(request):
@@ -39,8 +93,6 @@ def login_page(request):
 
 def reg(request):
     if request.method == 'POST':
-        # fname = request.POST.get('firstname')
-        # lname = request.POST.get('lastname')
         name = request.POST.get('name')
         email = request.POST.get('email')
         phone_number = request.POST.get('phone')
@@ -65,7 +117,19 @@ def reg(request):
             user.set_password(psw)
             user.save()
             login(request, user)
-            return redirect(Index)
+            admin_message = "New user {uname} has registered in your site. #{uid}".format(uid=request.user.id, uname=user.name)
+            admin = User.objects.get(is_superuser=1)
+
+            NOTIFICATION.objects.create(user=admin,
+                                        text=admin_message,
+                                        read=False,
+                                        table_no=1)
+            user_message = "Welcome {uname}, you are successfully registered".format(uname=user.name)
+            NOTIFICATION.objects.create(user=request.user,
+                                        text=user_message,
+                                        read=False,
+                                        table_no=1)
+            return redirect(user_home)
 
 
     else:
@@ -95,14 +159,93 @@ def logout_view(request):
     logout(request)
     return redirect(Index)
 
+def user_notification(request):
+    notification = NOTIFICATION.objects.filter(user_id=request.user.id).order_by('-id')
+    note = NOTIFICATION.objects.filter(user=request.user, read=False)
+    for i in note:
+        i.read = True
+        i.save()
+
+    return render(request, 'user_notification.html', locals())
+
+# admin module
+
+def admin_dashboard(request):
+    count = NOTIFICATION.objects.filter(user_id=request.user, read=False).count()
+    recent = ORDER.objects.all().order_by('-id')
+    user_details = User.objects.filter(user_type=3)
+    item = PRODUCT.objects.all()
+    ucount = 0
+    revenue = 0
+    order_count = 0
+    icount = 0
+    for i in user_details:
+        ucount += 1
+    for i in recent:
+        revenue = revenue + i.total
+        order_count = order_count + 1
+    for i in item:
+        icount = icount + 1
+    return render(request, 'admin_dashboard.html', locals())
+
+def order_details(request):
+    count = NOTIFICATION.objects.filter(user_id=request.user, read=False).count()
+    user_details = User.objects.filter(user_type=3)
+    new_orders = ORDER.objects.filter(status=1)
+    pending_orders = ORDER.objects.filter(status=2)
+    delivered_orders = ORDER.objects.filter(status=3)
+    # for i in order_detail:
+    #     for j in user_details:
+    #         if i.user == j.id:
+    #             fn = j.first_name
+    item = PRODUCT.objects.all()
+    return render(request, 'order_details.html', locals())
+
+def accept(request, id):
+    ORDER.objects.filter(id=id).update(status=2)
+    return redirect(order_details)
+
+
+def pending(request, id):
+    ORDER.objects.filter(id=id).update(status=3)
+    return redirect(order_details)
+
+
+def cancel(request, id):
+    ORDER.objects.filter(id=id).update(status=4)
+    return redirect(order_details)
+
+def notifications(request):
+    notification = NOTIFICATION.objects.filter(user_id=4).order_by('-id')
+    note = NOTIFICATION.objects.filter(user=request.user, read=False)
+    for i in note:
+        i.read = True
+        i.save()
+
+
+    return render(request, 'notifications.html', locals())
+
+
+
+
+
+
+def messages(request):
+    count = NOTIFICATION.objects.filter(user_id=request.user, read=False).count()
+    message = CONTACT.objects.all().order_by('-id')
+    return render(request, 'messages.html', locals())
+
 def items(request):
+    count = NOTIFICATION.objects.filter(user_id=request.user, read=False).count()
     fruits = PRODUCT.objects.all()
     return render(request, 'items.html', locals())
 
 def add_items(request):
-    return render(request, 'add_items.html')
+    count = NOTIFICATION.objects.filter(user_id=request.user, read=False).count()
+    return render(request, 'add_items.html', locals())
 
 def new_items(request):
+    count = NOTIFICATION.objects.filter(user_id=request.user, read=False).count()
     if request.method == "POST":
         item_code = request.POST.get('item_code')
         item_name = request.POST.get('item_name')
@@ -121,17 +264,25 @@ def new_items(request):
 
             )
             products.save()
+            for i in products:
+                oid = i.id
+            text = "New Item has been Added #{oid}".format(oid=oid)
+            NOTIFICATION.objects.create(user=request.user,
+                                        text=text,
+                                        read=False)
             return redirect(items)
         else:
-            return render(request, 'items.html')
+            return render(request, 'items.html',locals())
     else:
         return redirect(items)
 
 def update(request,id):
+    count = NOTIFICATION.objects.filter(user_id=request.user, read=False).count()
     details = PRODUCT.objects.filter(id=id)
     return render(request,'update.html', locals())
 
 def update_item(request,id):
+    count = NOTIFICATION.objects.filter(user_id=request.user, read=False).count()
     if request.method == 'POST':
         item_code = request.POST.get('item_code')
         item_name = request.POST.get('item_name')
@@ -147,11 +298,11 @@ def update_item(request,id):
             if image:
                 instance.image = image
             instance.save()
-            return redirect(items)
+            return redirect(items,locals())
         except PRODUCT.DoesNotExist:
             return redirect(update_item,id)
     else:
-        return redirect(items)
+        return redirect(items,locals())
 
 def delete_item(request,id):
     try:
@@ -162,6 +313,7 @@ def delete_item(request,id):
         return redirect(items)
 
 def customers(request):
+    count = NOTIFICATION.objects.filter(user_id=request.user, read=False).count()
     user_details = User.objects.filter(user_type=3)
     return render(request, 'customers.html', locals())
 
@@ -185,6 +337,8 @@ def shipping_charge(user):
 
 def cart_item(request):
     user = User.objects.get(id=request.user.id)
+    offers = OFFER.objects.all()
+
     try:
         cart_object = CART.objects.filter(user=request.user.id)
         if cart_object:
@@ -192,9 +346,17 @@ def cart_item(request):
             item_count = 0
             total_price = 0
             shipping = 0
+            price_list = []
             for i in cart_object:
                 item_count = item_count + i.quantity
                 total_price = total_price + i.total
+            for i in cart_object:
+                for j in food_details:
+                    if i.item_id == j.id:
+                        act_price = i.quantity * j.price
+                        price_list.append(act_price)
+            print(price_list)
+
             # if total_price > 1000:
             #     shipping = 0
             # else:
@@ -243,7 +405,7 @@ def add_to_cart(request,id):
         new_item.save()
         # CART.objects.create()
 
-        return redirect(cart_item)
+        return redirect(Shop)
 
 def delete_cart_item(request,id):
     cart_items = CART.objects.filter(id=id)
@@ -251,6 +413,7 @@ def delete_cart_item(request,id):
     return redirect(cart_item)
 
 def Checkout(request):
+    count = NOTIFICATION.objects.filter(user_id=request.user, read=False).count()
     user = User.objects.get(id=request.user.id)
     cart_objects = CART.objects.filter(user=request.user.id)
     fruits = PRODUCT.objects.all()
@@ -264,7 +427,7 @@ def Checkout(request):
         for i in cart_objects:
             for j in fruits:
                 if i.item_id == j.id:
-                    total_price = total_price + (j.price * i.quantity)
+                    total_price = total_price + i.total
         update_add = DELIVERY_ADDRESS.objects.filter(user=request.user.id)
         shipping = shipping_charge(user)
         grand_total = shipping + total_price
@@ -291,7 +454,7 @@ def Invoice(request):
     subtotal = 0
     quantity = 0
     shipping = shipping_charge(user)
-    x = datetime.datetime.now()
+    x = datetime.now()
     for i in cartitem:
         product_det = PRODUCT.objects.get(id=i.item_id)
         product = PRODUCT.objects.filter(id=i.item_id)
@@ -308,53 +471,167 @@ def Invoice(request):
     grand_total = shipping + subtotal
     my_orders = ORDER.objects.filter(user=user, order_date=x)
     my_products = PRODUCT.objects.all()
+    for i in my_orders:
+        oid = i.id
+    admin_message = "New Order has been placed #{oid}".format(oid=oid)
+    admin = User.objects.get(is_superuser=1)
+
+    NOTIFICATION.objects.create(user=admin,
+                                text=admin_message,
+                                read=False,
+                                table_no=2)
+    user_message = "your order for {item_count} items has been successfully placed".format(item_count=quantity)
+    NOTIFICATION.objects.create(user=request.user,
+                                text=user_message,
+                                read=False,
+                                table_no=2)
     CART.objects.filter(user=user).delete()
+
     return render(request, 'invoice.html', locals())
 
 def Offers(request):
+    count = NOTIFICATION.objects.filter(user_id=request.user, read=False).count()
     fruits = PRODUCT.objects.all()
     offer_details = OFFER.objects.all()
+    # x = datetime.now()
+    # OFFER.objects.filter(validity=x).delete()
+    current_time = timezone.now()
+
+    # Retrieve expired offers for debugging
+    expired_offers = OFFER.objects.filter(validity__lt=current_time)
+
+    # Delete expired offers
+    expired_offers.delete()
     return render(request, 'offers.html', locals())
 
 def Add_offer(request):
+    count = NOTIFICATION.objects.filter(user_id=request.user, read=False).count()
     fruits = PRODUCT.objects.all()
     return render(request, 'add_offer.html', locals())
 
 def offer_form(request,id):
+    count = NOTIFICATION.objects.filter(user_id=request.user, read=False).count()
     fruits = PRODUCT.objects.filter(id=id)
     return render(request, 'offer_form.html', locals())
 
 def apply_offer(request,id):
+    count = NOTIFICATION.objects.filter(user_id=request.user, read=False).count()
     if request.method == 'POST':
-        quantity = request.POST.get('quantity')
-        percentage = request.POST.get('percentage')
+        quantity = int(request.POST.get('quantity'))
+        percentage = int(request.POST.get('percentage'))
         validity = request.POST.get('validity')
+
         description = request.POST.get('description')
+
         try:
             OFFER.objects.get(item_id=id)
+            prod_details = PRODUCT.objects.filter(id=id)
+            for i in prod_details:
+                p = float(i.price)
+            offer_price = ((p * quantity) - ((percentage / 100) * (p * quantity)))
             OFFER.objects.filter(item_id=id).update(quantity=quantity,
                                                percentage=percentage,
                                                validity=validity,
-                                               description=description)
+                                               description=description,
+                                               offer_price=offer_price
+                                                    )
 
             return redirect(Offers)
-        except PRODUCT.DoesNotExist:
+        except OFFER.DoesNotExist:
             fruits = PRODUCT.objects.get(id=id)
             fruit_details = PRODUCT.objects.filter(id=id)
+            for i in fruit_details:
+                p = float(i.price)
+            offer_price = ((p * quantity) - ((percentage / 100) * (p * quantity)))
+
             offers = OFFER.objects.create(quantity=quantity,
                                                 percentage=percentage,
                                                 validity=validity,
                                                 description=description,
-                                                item=fruits
+                                                item=fruits,
+                                                offer_price=offer_price
                                                   )
             offers.save()
+            return redirect(Offers)
         off = OFFER.objects.filter(item_id=id)
         prod = PRODUCT.objects.filter(id=id)
-        for i in off:
-            for j in prod:
-                if i.item_id == j.id:
-                    off_price = (j.price * i.quantity)
-                    print(off_price)
-
-
     return redirect(Offers,locals())
+
+def offer_cart(request,id):
+    offers = OFFER.objects.get(item_id=id)
+
+    try:
+        CART.objects.get(item=id)
+        CART.objects.filter(item_id=id).update(quantity=offers.quantity,
+                                               total=offers.offer_price)
+
+        return redirect(dealofthemonth)
+
+    except CART.DoesNotExist:
+        prod = PRODUCT.objects.get(id=id)
+        user = User.objects.get(id=request.user.id)
+        new_item = CART.objects.create(item=prod,
+                                       user=user,
+                                       quantity=offers.quantity,
+                                       total=offers.offer_price
+                                       )
+        new_item.save()
+    # CART.objects.create()
+        return redirect(dealofthemonth)
+
+    return redirect(dealofthemonth)
+
+
+def profile(request):
+    return render(request, 'profile.html')
+
+def update_address(request):
+    # user = User.objects.filter(id=request.user.id)
+    if request.method == 'POST':
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        address = request.POST.get('address')
+        pincode = request.POST.get('pincode')
+        email = request.POST.get('email')
+        phone_number = request.POST.get('phone_number')
+        try:
+            User.objects.get(id=request.user.id)
+            User.objects.filter(id=request.user.id).update(first_name=first_name,
+                                                           last_name=last_name,
+                                                           address=address,
+                                                           pincode=pincode,
+                                                           email=email,
+                                                           phone_number=phone_number)
+            return redirect(profile)
+        except User.DoesNotExist:
+            return redirect(profile)
+    else:
+        return redirect(profile)
+
+def order_history(request):
+    user_data = User.objects.filter(id=request.user.id)
+    order_objects = ORDER.objects.filter(user_id=request.user.id).order_by('-order_date')
+    product_details = PRODUCT.objects.all()
+    orders_date_list = []
+    total_list = []
+
+    for i in order_objects:
+        if i.order_date in orders_date_list:
+            continue
+        else:
+            orders_date_list.append(i.order_date)
+
+    # print(orders_date_list)
+    total = 0
+    for j in orders_date_list:
+        total = 0
+        for k in order_objects:
+
+            if j == k.order_date:
+                total += k.total
+        total_list.append(total)
+    # print(total_list)
+
+    # print(orders_date)
+
+    return render(request, 'order_history.html', locals())

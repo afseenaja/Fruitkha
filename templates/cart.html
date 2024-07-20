@@ -52,6 +52,7 @@
                             <td class="th">total</td>
                         </tr>
                         {% for i in cart_object %}
+                        {% with forloop.counter as count1 %}
                         {% for j in food_details %}
                         {% if i.item_id == j.id %}
                         <tr>
@@ -60,10 +61,22 @@
                             <td>{{ j.item_name }}</td>
                             <td>{{ j.price }}</td>
                             <td><input type="number" name="" id="" value="{{ i.quantity }}"></td>
-                            <td>{{ i.total }}</td>
+                            {% for p in price_list %}
+                                {% with forloop.counter as count2 %}
+                                    {% if count1 == count2 %}
+                                        {% if p == i.total %}
+                                            <td>{{ i.total }}</td>
+                                            
+                                        {% else %}
+                                        <td><strike>{{ p }}</strike>{{ i.total }}</td>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endwith %}
+                            {% endfor %}
                         </tr>
                         {% endif %}
                         {% endfor %}
+                        {% endwith %}
                         {% endfor %}
                        
                     </table>
@@ -104,7 +117,7 @@
                                 <img src="{% static 'images\11329060.png' %}" width="130" height="130" class="img-fluid mb-4 mr-3">
                                 <h3><strong>Your Cart is Empty</strong></h3>
                                 <h4>Add something to make me happy :)</h4>
-                                <a href="#" class="btn btn-primary cart-btn-transform m-3" data-abc="true" style="background-color: #f28500; border: none;">continue shopping</a>
+                                <a href="{% url 'shop' %}" class="btn btn-primary cart-btn-transform m-3" data-abc="true" style="background-color: #f28500; border: none;">continue shopping</a>
                             </div>
                         </div>
                     </div>

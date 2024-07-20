@@ -20,6 +20,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <style>
+  input::placeholder {
+  font-weight: bold;
+  opacity: 0.5;
+  color: gray;
+}
+
+    </style>
+
 </head>
 <body>
     <div class="row1" style="background-image: url('/static/images/breadcrumb-bg.jpg'); height: 450px; width: 100%;">
@@ -39,14 +48,17 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-9">
+                    <form action="{% url 'enquiry' %}" method="post">
+                        {% csrf_token %}
                     <h3><b>Have you any question?</b></h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, ratione! Laboriosam est, assumenda. Perferendis, quo alias quaerat aliquid. Corporis ipsum minus voluptate? Dolore, esse natus!</p>
-                    <input type="text" name="name" id="" placeholder="Name">
-                    <input type="text" name="name" id="" placeholder="Email">
-                    <input type="text" name="name" id="" placeholder="Phone">
-                    <input type="text" name="name" id="" placeholder="Subject">
-                    <input type="text" name="name" id="message" placeholder="Message">
+                    <input type="text" name="name" id="" placeholder="Name" >
+                    <input type="text" name="email" id="" placeholder="Email">
+                    <input type="text" name="phone" id="" placeholder="Phone">
+                    <input type="text" name="subject" id="" placeholder="Subject">
+                    <input type="text" name="message" id="message" placeholder="Message">
                     <input type="submit" value="SUBMIT">
+                </form>
                 </div>
                 <div class="col-sm-3">
                     <div class="row">

@@ -99,17 +99,42 @@ body {
 .sidebar ul li a:hover, .sidebar ul li a.active {
     background-color: #34495e;
 }
+table{
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+}
+tr{
+    width: fit-content;
+    padding: 5px 0px;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 5px 5px;
+}
+.tab{
+    padding-top: 30px;
+}
+.sidebar img{
+    height: 10%;
+    width: 90%;
+    
+}
 
    </style>
 </head>
 <body>
     <div class="sidebar">
-        <h2>Admin Dashboard</h2>
+        <img src="{% static 'images/logo.png' %}" alt="">
         <ul>
             <li><a href="{% url 'admin_dashboard' %}" class="active" id="dashboard">Dashboard</a></li>
             <li><a href="{% url 'customers' %}" id="users">Users</a></li>
             <li><a href="{% url 'offers' %}" id="offer">offer</a></li>
             <li><a href="{% url 'items' %}" id="items">Items</a></li>
+            <li><a href="{% url 'notifications' %}" id="items">Notifications</a></li>
+            <li><a href="{% url 'order_details' %}" id="items">Order Details</a></li>
+            <li><a href="{% url 'messages' %}" id="items">Messages</a></li>
             <li><a href="{% url 'logout' %}" id="logout">Logout</a></li>
         </ul>
     </div>
@@ -120,21 +145,67 @@ body {
         <div class="info-cards">
             <div class="card">
                 <h3>Users</h3>
-                <p>1,234</p>
+                <p>{{ ucount }}</p>
             </div>
             <div class="card">
-                <h3>Revenue</h3>
-                <p>$12,345</p>
+                <h3>Items</h3>
+                <p>{{ icount }}</p>
             </div>
             <div class="card">
                 <h3>Sales</h3>
-                <p>567</p>
+                <p>{{ order_count }}</p>
             </div>
             <div class="card">
-                <h3>Feedback</h3>
-                <p>89</p>
-            </div>
+                <h3>Revenue</h3>
+                <p>{{ revenue }}</p>
+            </div> 
         </div>
+        <div class="tab">
+            <table class="w3-table-all w3-hoverable">
+              <tr>
+                <th>#</th>
+                <th style="width: 100px;">user name</th>
+                <th>phone_number</th>
+                <th>address ,pincode</th>
+                <th>Item Code</th>
+                <th>Quantity</th>
+                <th></th>
+                
+              </tr>
+              {% for i in recent %}
+                        {% with forloop.counter as outer_counter %}
+                        {% if outer_counter <= 10 %}
+                        {% for j in user_details %}
+                            {% for k in item %}
+                                
+            
+                                    {% if j.id == i.user_id %}
+                                    {% if k.id == i.item_id%}
+                                    <tr>
+                                        <td>{{ outer_counter }}</td>
+                                        <td>{{ j.name }}</td>
+                                        <td> {{ j.phone_number }}</td>
+                                        <td>{{ j.address }},{{ j.pincode }}</td>
+                                        <td>{{ k.item_code}}</td>
+                                        <td>{{ i.quantity }}</td>
+                                        {% if i.status == 1 %}
+                                        <td><button style="background-color: rgb(161, 172, 33);padding: 10px; border: none;">Ordered</button></td>
+                                        {% elif i.status == 2 %}
+                                        <td><button style="background-color: rgb(142, 37, 37);padding: 10px; border: none;">Pending</button></td>
+                                        {% elif i.status == 3 %}
+                                        <td><button style="background-color: rgb(16, 117, 16);padding: 10px; border: none;">Delivered</button> </td>
+                                        {% else %}
+                                        <td><button style="background-color: rgb(44, 44, 126);padding: 10px; border: none;">Cancelled</button> </td>
+                                        {% endif %}
+                                    </tr>
+                                    {% endif %}
+                                    {% endif%}
+                                {% endfor %}
+                            {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    {% endfor %}
+            </table>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {

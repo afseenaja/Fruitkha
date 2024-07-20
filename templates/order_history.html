@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fruitkha</title>
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/icon type">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'bootstrap/js/bootstrap.min.js' %}"> -->
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+    <!-- owl carousal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js."></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <style>
+        body{
+            width: 100%;
+            position: relative;
+            padding: 0;
+            margin: 0;
+        }
+        .section2 img{
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .row{
+            width: 100%;
+            text-align: left;
+            
+        }
+        .container_fluid{
+            text-align: left;
+            width: 100%;
+        }
+        p{
+            text-align: left;
+            color: rgb(152, 151, 151);
+        }
+        .section2{
+            padding: 20px 20px;
+            position: relative; 
+            width:100%;
+            position: relative;
+        }
+        /* .break{
+            background-color: aliceblue;
+        } */
+        .main-row{
+            background-color: aliceblue;
+            width: 100%;
+            /* padding-bottom: 20px; */
+            padding: 0; 
+        }
+        .Total{
+            padding-bottom: 20px;
+        }
+        .no_order{
+            background-color: rgb(245, 231, 213);
+            padding: 30px 30px 70px 30px;
+        }
+        .image{
+            /* width: 50%; */
+            border: none;
+            /* height: 40%; */
+            border-radius: 0;
+            size: 100% 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="row1" style="background-image: url('/static/images/breadcrumb-bg.jpg'); height: 450px; width: 100%;">
+        <div class="mask" style="background-color: rgba(29, 21, 108, 0.7); height: inherit;">
+            <div class="container-fluid">
+
+                {% include 'header.html' %}
+
+                <div class="rowa12">
+                    <h6><span></span></h6>
+                    <h1><b>Order History</b></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+        {% if order_objects %}
+        <div class="row">
+            <div class="container_fluid">
+                {% for x in orders_date_list %}
+                    {% with forloop.counter as counter1 %}
+                        <div class="main-row">
+                            <p style="padding:20px 0px 0px 20px;">order date : {{ x }}</p>
+                            {% for i in order_objects %}
+                                {% for j in user_data %}
+                                    {% for k in product_details %}
+                                        {% if i.user_id == j.id %}
+                                            {% if i.item_id == k.id %}
+                                                {% if i.order_date == x   %}
+                                                <!-- <h6>Order No. #{{ i.id}}</h6> -->
+                                                    <div class="row section2">
+                                                        <div class="col-sm-3">
+                                                            <img src="{{ k.image.url }}" alt="">
+                                                        </div>
+                                                        <div class="col-sm-9" style="border-bottom: 1px solid lightgrey;">
+                                                            <h6>{{ k.item_name }}</h6>
+                                                            <p>{{ k.description }}</p>
+                                                            <div class="row section3">
+                                                                <div class="col-sm-6">
+                                                                    <h6 id="price">{{ k.price }}</h6>
+                                                                    
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <h6>{{ i.quantity }}</h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}                           
+                            {% endfor %}                                        
+                            {% for w in total_list %}
+                                {% with forloop.counter as counter2 %}
+                                    {% if counter1 == counter2 %}
+                                        <h6 class="Total" style="margin-left: 50%; position: relative;">Total : {{ w }} </h6>
+                                    {% endif %}
+                                {% endwith %}
+                            {% endfor %}    
+                        </div>          
+                        <div class="break"><br><br></div>
+                        {% endwith %}
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+    <div class="no_order">
+        <img class="image" src="{% static 'images/empty.png' %}" alt="">
+        <h4>You have no orders yet</h4>
+        <h6>Don't wait , check out our delicious menu</h6>
+    </div>
+    {% endif%}
+    {% include 'footer.html' %}
+    <script>
+               window.onscroll = function() { scrollFunction() };
+    
+    function scrollFunction() {
+        const topRow = document.getElementById("topRow");
+    
+        // Change background color when scrolling
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            topRow.style.backgroundColor = "black";
+        } else {
+            topRow.style.backgroundColor = "transparent";
+        }
+    }
+    function toggleSearch() {
+  var newDiv = document.getElementById('new');
+  if (newDiv.style.visibility === "hidden") {
+      newDiv.style.visibility = "visible";
+  } else {
+      newDiv.style.visibility = "hidden";
+  }
+}
+    </script>
+</body>
+</html>

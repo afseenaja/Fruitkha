@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fruitkha</title>
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/icon type">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'bootstrap/js/bootstrap.min.js' %}"> -->
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+    <!-- owl carousal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js."></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 800px;
+  margin: auto;
+  /* margin: 100px 0px 100px 100px; */
+  text-align: left;
+  font-family: arial;
+  margin-bottom: 50px;
+}
+
+.title {
+  color: grey;
+  font-size: 25px;
+}
+
+button {
+  border: none;
+  border-radius: 20px;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  /* font-size: 22px; */
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+.buttons button{
+    margin: 20px;
+    border: none;
+    border-radius: 50px;
+}
+</style>
+</head>
+<body>
+    <div class="row1" style="background-image: url('/static/images/breadcrumb-bg.jpg'); height: 450px; width: 100%;">
+        <div class="mask" style="background-color: rgba(29, 21, 108, 0.7); height: inherit;">
+            <div class="container-fluid">
+
+                {% include 'header.html' %}
+
+                <div class="rowa12">
+                    <h6><span></span></h6>
+                    <h1><b>Profile</b></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-5 mt-5" style="max-width: 800px; padding: 50px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{% static 'images/dummy-user.png' %}" class="card-img" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title" style="font-size: 20px;"><b style="font-weight: bolder;">{{ user.name }}</b></h5>
+              <p class="card-text">Email: {{ user.email }}</p>
+              <p class="card-text">Address: {{ user.address }},{{ user.pin_code }}</p>
+              <p class="card-text">Contact: {{ user.phone_number }}</p>
+              <p class="card-text"><small class="text-muted">Joined on:{{ user.date_joined }}</small></p>
+            </div>
+          </div>
+          <div class="buttons">
+                    <a href="{% url 'order_history' %}"><button type="submit">Order History</button></a>
+                    <button type="submit">Payment Details</button>
+                    <button type="submit"><a href="{% url 'logout' %}">LOGOUT</a></button>
+          </div>
+        </div>
+      </div>
+
+{% include 'footer.html' %}
+    <script>
+        window.onscroll = function() { scrollFunction() };
+    
+    function scrollFunction() {
+        const topRow = document.getElementById("topRow");
+    
+        // Change background color when scrolling
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            topRow.style.backgroundColor = "black";
+        } else {
+            topRow.style.backgroundColor = "transparent";
+        }
+    }
+    function toggleSearch() {
+  var newDiv = document.getElementById('new');
+  if (newDiv.style.visibility === "hidden") {
+      newDiv.style.visibility = "visible";
+  } else {
+      newDiv.style.visibility = "hidden";
+  }
+}
+    </script>
+</body>
+</html>

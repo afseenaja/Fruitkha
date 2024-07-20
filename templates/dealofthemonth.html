@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fruitkha</title>
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/icon type">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'bootstrap/js/bootstrap.min.js' %}"> -->
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <!-- carousal -->
+    <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- fafa -->
+    <script src="https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+    <!-- bootstrap for card -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <!-- carousal -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- owl carousal -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js."></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">  
+  <style>
+    *{
+  margin: 0;
+  padding: 0;
+}
+
+button{
+  width: fit-content;
+  background-color: #f28500;
+  color: white;
+  border: 1px solid #f28500;
+  padding: 20px;
+  border-radius: 2%;
+}
+span{
+  color:#f28500;
+}
+.row1{
+    height: 600px;
+    width: 100%;
+    content:'';
+    background-image: url('/static/images/hero-bg.jpg');
+    background-size: cover;
+    background-repeat:  no-repeat;
+    background-position:  center;
+    /* filter:grayscale(50%); */
+    /* position: absolute;
+    top:0px;
+    left: 0px;
+    width:100%;
+    height:100%;
+    z-index:-1; */
+    /* opacity: 0.5; */
+    text-align: center;
+    color: white;
+    /* padding-top: 20px; */
+
+}
+.row1 .row{
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  width: 100%;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  z-index: 1000;
+}
+.top-row.scrolled {
+  background-color: black;
+}
+.row1 .navbar ul{
+  display: block;
+  display: flex;
+  flex-direction: row;
+}
+.row1 .drop{
+  display: none;
+}
+.row1 .main:hover, .row1 li:hover,.row1 .main:hover{
+  display: block;
+  display: flex;
+  flex-direction: column;
+}
+.row1 .container-fluid{
+    height: 100%;
+    width: 100%;
+}
+.row1 img{
+   height: 53px;
+   width: 170px;
+   padding: 2%;
+   object-fit: cover;
+   margin-top: 10px;
+}
+/* .row1 .navbar{
+  /* background-color: transparent; */
+  /* color: white;
+} */
+nav {
+  background-color: transparent;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  text-decoration: none;
+  
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 15px 20px;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+nav a:hover {
+  /* background-color: #555; */
+  color: #ff9101;
+  text-decoration: none;
+}
+
+/* Dropdown styles */
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  width: 150px;
+  border-radius: 10px;
+  /* color: rgb(55, 55, 55); */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  color: gray;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: rgb(110, 110, 110);
+  padding: 12px 16px;
+  display: block;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: white;
+}
+  .row1 .container-fluid .row12{
+    text-align: center;
+    padding-top: 15%;
+    color: white;
+  }
+  .row1 .container-fluid .row12 button{
+    color: white;
+    border: 2px solid #f28500;
+    padding: 10px 25px;
+    border-radius: 30px;
+    margin: 5px;
+  }
+  .row1 .container-fluid .row12 h6{
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 6px;
+  }
+  .row1 .container-fluid .row12 h1{
+    font-size: 60px;
+    font-weight: 900;
+    padding-bottom: 20px;
+  }
+  .row1 .container-fluid .row12 .but1:hover{
+    background-color:rgb(40, 40, 40);
+    
+  }
+  .row1 .row12 .but2:hover{
+    background-color:#f28500 ;
+  }
+  .row1 .row .col-sm-2 a{
+    color: white;
+    text-decoration: none;
+  }
+  .row1 .row .col-sm-2 i{
+    margin: 0px;
+    padding: 20px;
+  }
+  .row1 .col-sm-2 .srch{
+    background-color: transparent;
+    font-size: 15px;
+    width: inherit;
+    height: inherit;
+    border: none;
+}
+.row1 .new{
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100%;
+    height: fit-content;
+    z-index: 2000;
+    position: fixed;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+}
+.row1 .search{
+    width: 100%;
+    height: fit-content;
+    padding: 150px 200px 300px 200px;
+    text-align: center;
+}
+.row1 .new .close{
+    margin-left: 90%;
+    padding: 35px;
+    
+}
+.row1 .new .close button{
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+.row1 .search input[type="text"]{
+    width: 70%;
+    border: none;
+    border-bottom: 1px solid orange;
+    background-color: transparent;
+    height: 100px;
+    font-size: 50px;
+    text-align: center;
+    color: white;
+    font-weight: 900;
+}
+::-webkit-input-placeholder{
+  color: white;
+}
+.row1 .search button{
+    width: fit-content;
+    height: fit-content;
+    padding: 20px;
+    border-radius: 30px;
+    margin-top: 40px;
+    
+}
+.row1 .search h2{
+  letter-spacing: 4px;
+  padding: 20px;
+}
+      /* row2 */
+
+.row4{
+  position: relative;
+    height: fit-content;
+    width: 100%;
+    text-align: left;
+    background-color: rgb(245, 245, 245);
+    padding: 100px 20px;
+    
+}
+.row4 .container-fluid{
+    height: inherit;
+    width: inherit;
+    color: black;
+    padding: 20px;
+}
+.row4 .row .col-sm-6 img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 0%;
+    border: none;
+}
+
+.row4 .round{
+  height:120px;
+  width: 120px;
+  background-color: #f28500;
+  border: 8px solid rgb(248, 187, 74);
+  border-radius: 50%;
+  text-align: center;
+  padding: 10px;
+  margin: -460px 0px 0px 100px;
+  position: absolute;
+  left: 16px;
+  
+
+}
+.row4 .col-sm-2{
+    border: 2px solid #f28500;
+    margin: 5px;
+    text-align: center;
+    padding-top: 5px;
+}
+.row4 .col-sm-2 h1{
+    color: #f28500;
+}
+.row4 button{
+    width: 25%;
+    height: fit-content;
+    background-color: #f28500;
+    color: white;
+    border: 1px solid #f28500;
+    padding: 10px;
+    border-radius: 25px;
+}
+
+
+#but1{
+  width: 20%;
+  height:40px;
+  background-color: #f28500;
+  color: white;
+  border: 1px solid #f28500;
+  padding: 5px;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+  </style>              
+</head>
+<body>
+  
+
+    <div class="row1" style="background-image: url('/static/images/breadcrumb-bg.jpg'); height: 450px; width: 100%;">
+        <div class="mask" style="background-color: rgba(29, 21, 108, 0.7); height: inherit;">
+            <div class="container-fluid">
+                
+                {% include 'header.html' %}
+
+                <div class="rowa12">
+                    <h6><span>ORGANIC INFORMATION</span></h6>
+                    <h1><b>Offers</b></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row4">
+      <div class="container-fluid">
+          {% for i in offer_details %}
+          {% with forloop.counter as counter1 %}
+          {% for j in fruits %}
+          {% if i.item_id == j.id %}
+          <div class="row" style="border: 1px solid black;" data-counter="{{ counter1 }}">
+              <div class="col-sm-6">
+                  <img src="{{ j.image.url }}" alt="">
+                  <div class="round">
+                      <h3><b>{{ i.percentage }}%</b></h3>
+                      <p style="color: black; padding: 0;">off for {{ i.quantity }} kg</p>
+                  </div>
+              </div>
+              <div class="col-sm-6">
+                  <h1><b><span>{{ j.item_name }}</span></b></h1>
+                  {% for price in actual_price %}
+                  {% with forloop.counter as counter2 %}
+                  {% if counter1 == counter2 %}
+                  <h4>{{ i.offer_price }} <strike>{{ price }}</strike></h4>
+                  {% endif %}
+                  {% endwith %}
+                  {% endfor %}
+                  <br>
+                  <p>Quisquam minus maiores repudiandae nobis, minima saepe id, fugit ullam similique! Beatae, minima quisquam molestias facere ea. Perspiciatis unde omnis iste natus error sit voluptatem accusant</p>
+                  {% for date in formatted_date %}
+                  {% with forloop.counter as counter2 %}
+                  {% if counter1 == counter2 %}
+                  <h5 style="font-weight: 600;">Offer Valid Till:</h5>
+                  <h3 style="color: #f28500;" class="validity" data-counter="{{ counter1 }}">{{ date }}</h3>
+                  <div class="row countdown-timer" data-counter="{{ counter1 }}">
+                      <div class="col-sm-2">
+                          <h1 class="day">00</h1>
+                          <p>Days</p>
+                      </div>
+                      <div class="col-sm-2">
+                          <h1 class="hour">00</h1>
+                          <p>Hours</p>
+                      </div>
+                      <div class="col-sm-2">
+                          <h1 class="min">00</h1>
+                          <p>Mins</p>
+                      </div>
+                      <div class="col-sm-2">
+                          <h1 class="sec">00</h1>
+                          <p>Secs</p>
+                      </div>
+                  </div>
+                  {% endif %}
+                  {% endwith %}
+                  {% endfor %}
+                  <br>
+                  {% if user.is_active %}
+                  <a href="{% url 'offer_cart' j.id %}"><button><i class='fas fa-shopping-cart'></i> Add to Cart</button></a>
+                  {% else %}
+                  <a href="{% url 'login' %}"><button><i class='fas fa-shopping-cart'></i> Add to Cart</button></a>
+                  {% endif %}
+              </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+          {% endwith %}
+          {% endfor %}
+      </div>
+  </div>
+  
+  {% include 'footer.html' %}
+  
+
+    <script>
+      window.onscroll = function() { scrollFunction() };
+  
+  function scrollFunction() {
+      const topRow = document.getElementById("topRow");
+  
+      // Change background color when scrolling
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          topRow.style.backgroundColor = "black";
+      } else {
+          topRow.style.backgroundColor = "transparent";
+      }
+  }
+  function toggleSearch() {
+  var newDiv = document.getElementById('new');
+  if (newDiv.style.visibility === "hidden") {
+      newDiv.style.visibility = "visible";
+  } else {
+      newDiv.style.visibility = "hidden";
+  }
+}
+// time countdown
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Get all countdown timers
+    const countdownTimers = document.querySelectorAll('.countdown-timer');
+
+    countdownTimers.forEach(timer => {
+        const counter = timer.getAttribute('data-counter');
+        const validityElement = document.querySelector(`.validity[data-counter="${counter}"]`);
+        const validityDate = validityElement.innerHTML;
+
+        // Parse the validity date string into a Date object
+        const countDownDate = new Date(validityDate).getTime();
+
+        // Update the count down every 1 second
+        const x = setInterval(function() {
+            // Get today's date and time in milliseconds
+            const now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            const distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result in elements with respective classes
+            timer.querySelector('.day').innerHTML = days;
+            timer.querySelector('.hour').innerHTML = hours;
+            timer.querySelector('.min').innerHTML = minutes;
+            timer.querySelector('.sec').innerHTML = seconds;
+
+            // If the count down is over, clear the interval and display zeros
+            if (distance < 0) {
+                clearInterval(x);
+                timer.querySelector('.day').innerHTML = "00";
+                timer.querySelector('.hour').innerHTML = "00";
+                timer.querySelector('.min').innerHTML = "00";
+                timer.querySelector('.sec').innerHTML = "00";
+            }
+        }, 1000); // Update every 1 second (1000 milliseconds)
+    });
+});
+
+
+// var val = document.getElementById("validity").value
+// console.log(val)
+// var countDownDate = new Date(val).getTime();
+
+// // Update the count down every 1 second
+// var x = setInterval(function() {
+
+//   // Get today's date and time
+//   var now = new Date().getTime();
+    
+//   // Find the distance between now and the count down date
+//   var distance = countDownDate - now;
+    
+//   // Time calculations for days, hours, minutes and seconds
+//   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+//   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+//   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+//   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+//   // Output the result in an element with id="demo"
+//   document.getElementById("day").innerHTML = days;
+//   document.getElementById('hour').innerHTML=hours;
+//   document.getElementById('min').innerHTML=minutes;
+//   document.getElementById('sec').innerHTML=seconds; 
+//   // If the count down is over, write some text 
+//   if (distance < 0) {
+//     clearInterval(x);
+//     document.getElementById('day').innerHTML="00";
+//     document.getElementById('hour').innerHTML="00";
+//     document.getElementById('min').innerHTML="00";
+//     document.getElementById('sec').innerHTML="00";
+//   }
+// }, 1000);
+  </script>
+</body>
+</html>

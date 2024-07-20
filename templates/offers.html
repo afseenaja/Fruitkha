@@ -114,8 +114,8 @@ table, th, td {
   padding: 5px 5px;
 }
 img{
-    height: 10%;
-    width: 20%;
+    height: 60px;
+    width: 60px;
 }
 button{
     background-color: #3498db;
@@ -125,16 +125,24 @@ button{
     padding: 5px;
 
 }
+.sidebar img{
+    height: 10%;
+    width: 90%;
+    
+}
    </style>
 </head>
 <body>
     <div class="sidebar">
-        <h2>Admin Dashboard</h2>
+        <img src="{% static 'images/logo.png' %}" alt="">
         <ul>
             <li><a href="{% url 'admin_dashboard' %}" class="active" id="dashboard">Dashboard</a></li>
             <li><a href="{% url 'customers' %}" id="users">Users</a></li>
             <li><a href="{% url 'offers' %}" id="offer">offer</a></li>
             <li><a href="{% url 'items' %}" id="items">Items</a></li>
+            <li><a href="{% url 'notifications' %}" id="items">Notifications</a></li>
+            <li><a href="{% url 'order_details' %}" id="items">Order Details</a></li>
+            <li><a href="{% url 'messages' %}" id="items">Messages</a></li>
             <li><a href="{% url 'logout' %}" id="logout">Logout</a></li>
         </ul>
     </div>
@@ -150,8 +158,10 @@ button{
                     <th style="width: 100px;">Name</th>
                     <th></th>
                     <th>Price</th>
-                    <th></th> 
                     <th>quantity</th>
+                    <th>Percentage</th>
+                    <th>Offer Price</th>
+                    <th>Description</th>
                     <th>validity</th>
                 </tr>
                 {% for i in offer_details %}
@@ -163,9 +173,11 @@ button{
                     <td>{{ j.item_code }}</td>
                     <td>{{ j.item_name }}</td>
                     <td><img src="{{ j.image.url }}" alt=""></td>
-                    <td>{{ off_price }}</td>
-                    <td>{{ i.description }}</td>
+                    <td>{{ j.price }}</td>
                     <td>{{ i.quantity }}</td>
+                    <td>{{ i.percentage }}</td>
+                    <td>{{ i.offer_price }}</td>
+                    <td>{{ i.description }}</td>
                     <td>{{ i.validity }}</td>
                 </tr>
                 {% endif %}

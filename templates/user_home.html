@@ -582,6 +582,7 @@ nav a:hover {
   border-radius: 20px;
   margin-top: 20px;
 }
+
   </style>              
 </head>
 <body>
@@ -668,7 +669,11 @@ nav a:hover {
                         <h1>{{ i.item_name }}</h1>
                         <p>Per kg</p>
                         <h2><b>{{ i.price }}</b></h2>
+                        {% if user.is_active %}
                         <p><a href="{% url 'add_to_cart' i.id %}"><button><i class='fas fa-shopping-cart'></i> Add to Cart</button></a></p>
+                        {% else %}
+                        <p><a href="{% url 'login' %}"><button><i class='fas fa-shopping-cart'></i> Add to Cart</button></a></p>
+                        {% endif %}
                     </div>
                 </div>
                 {% endif %}
@@ -699,14 +704,26 @@ nav a:hover {
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
-                    <img src="{% static 'images/a.jpg' %}" alt="">
-                    <div class="round"><h3><b>30%</b></h3><p style="color: black;padding: 0;">off per kg</p></div>
+                  {% for i in offer_details %}
+              {% if forloop.counter <= 1 %}
+              {% for j in fruits %}
+              {% if i.item_id == j.id %}
+                    <img src="{{ j.image.url }}" alt="">
+                    
+                    <div class="round"><h3><b>{{ i.percentage }}%</b></h3><p style="color: black;padding: 0;">off for {{ i.quantity }} kg</p></div>
                 </div>
                 <div class="col-sm-6">
                     <h1><b><span>Deal</span> of the month</b></h1> 
-                    <h4>HIKAN STRWABERRY</h4>
+                    <h4>{{ j.item_name }}</h4>
                     <br>
                     <p>Quisquam minus maiores repudiandae nobis, minima saepe id, fugit ullam similique! Beatae, minima quisquam molestias facere ea. Perspiciatis unde omnis iste natus error sit voluptatem accusant</p>
+                    <!-- <input type="hidden" name="validity" id="validity" value=""> -->
+                    <h1 id="validity" style="visibility: hidden;">{{ format_date }} 1</h1>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                    
                     <div class="row">
                         <div class="col-sm-2">
                             <h1 id="day">00</h1>
@@ -726,7 +743,9 @@ nav a:hover {
                         </div>
                     </div>
                     <br>
+                    
                     <a href="{% url 'cart' %}"><button><i class='fas fa-shopping-cart'></i> Add to Cart</button></a>
+                    <a href="{% url 'dealofthemonth' %}"><button><i class='fas fa-shopping-cart'></i> More Offers</button></a>
                 </div>
             </div>
         </div>
@@ -872,6 +891,83 @@ nav a:hover {
       newDiv.style.visibility = "hidden";
   }
 }
+// time countdown
+document.addEventListener('DOMContentLoaded', (event) => {
+    var val = document.getElementById("validity").innerHTML;
+    console.log("Validity date:", val);
+
+    // Parse the validity date string into a Date object
+    var countDownDate = new Date(val).getTime();
+    console.log("Countdown date (milliseconds):", countDownDate);
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+        // Get today's date and time in milliseconds
+        var now = new Date().getTime();
+        
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+        
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        // Output the result in elements with respective ids
+        document.getElementById("day").innerHTML = days;
+        document.getElementById("hour").innerHTML = hours;
+        document.getElementById("min").innerHTML = minutes;
+        document.getElementById("sec").innerHTML = seconds;
+        
+        // If the count down is over, clear the interval and display zeros
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("day").innerHTML = "00";
+            document.getElementById("hour").innerHTML = "00";
+            document.getElementById("min").innerHTML = "00";
+            document.getElementById("sec").innerHTML = "00";
+        }
+    }, 1000); // Update every 1 second (1000 milliseconds)
+});
+
+
+
+
+
+// var val = document.getElementById("validity").value
+// console.log(val)
+// var countDownDate = new Date(val).getTime();
+
+// // Update the count down every 1 second
+// var x = setInterval(function() {
+
+//   // Get today's date and time
+//   var now = new Date().getTime();
+    
+//   // Find the distance between now and the count down date
+//   var distance = countDownDate - now;
+    
+//   // Time calculations for days, hours, minutes and seconds
+//   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+//   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+//   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+//   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+//   // Output the result in an element with id="demo"
+//   document.getElementById("day").innerHTML = days;
+//   document.getElementById('hour').innerHTML=hours;
+//   document.getElementById('min').innerHTML=minutes;
+//   document.getElementById('sec').innerHTML=seconds; 
+//   // If the count down is over, write some text 
+//   if (distance < 0) {
+//     clearInterval(x);
+//     document.getElementById('day').innerHTML="00";
+//     document.getElementById('hour').innerHTML="00";
+//     document.getElementById('min').innerHTML="00";
+//     document.getElementById('sec').innerHTML="00";
+//   }
+// }, 1000);
   </script>
 </body>
 </html>

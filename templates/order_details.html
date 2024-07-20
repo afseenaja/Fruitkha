@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+   <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    transition: background 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #34495e;
+}
+
+.main-content {
+    margin-left: 250px; /* Add the width of the sidebar */
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #ecf0f1;
+    height: 100vh;
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.header {
+    background-color: #3498db;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.info-cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.card p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #3498db;
+}
+.sidebar ul li a:hover, .sidebar ul li a.active {
+    background-color: #34495e;
+}
+table{
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+}
+tr{
+    width: fit-content;
+    padding: 5px 0px;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 5px 5px;
+}
+img{
+    height: 60px;
+    width: 60px;
+}
+button{
+    background-color: #3498db;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+
+}
+.table_button{
+    background-color:#3498db ;
+    padding: 4px 10px;
+    text-decoration: none;
+    color: white;
+}
+.sidebar img{
+    height: 10%;
+    width: 90%;
+    
+}
+   </style>
+</head>
+<body>
+    <div class="sidebar">
+        <img src="{% static 'images/logo.png' %}" alt="">
+        <ul>
+            <li><a href="{% url 'admin_dashboard' %}" class="active" id="dashboard">Dashboard</a></li>
+            <li><a href="{% url 'customers' %}" id="users">Users</a></li>
+            <li><a href="{% url 'offers' %}" id="offer">offer</a></li>
+            <li><a href="{% url 'items' %}" id="items">Items</a></li>
+            <li><a href="{% url 'notifications' %}" id="items">Notifications</a></li>
+            <li><a href="{% url 'order_details' %}" id="items">Order Details</a></li>
+            <li><a href="{% url 'messages' %}" id="items">Messages</a></li>
+            <li><a href="{% url 'logout' %}" id="logout">Logout</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <h1>Order Details</h1>
+        </div>
+        <div class="info-cards">
+            <table class="w3-table-all w3-hoverable">
+                <caption ><b>NEW ORDERS</b></caption>
+                <tr><th>#</th>
+                    <th style="width: 100px;">user name</th>
+                    <th>phone_number</th>
+                    <th>address ,pincode</th>
+                    <th>Item Code</th>
+                    <th>Quantity</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                {% for i in new_orders %}
+                    {% with forloop.counter as outer_counter %}
+                    {% for j in user_details %}
+                        {% for k in item %}
+                            
+        
+                                {% if j.id == i.user_id %}
+                                {% if k.id == i.item_id%}
+                                <tr>
+                                    <td>{{ outer_counter }}</td>
+                                    <td>{{ j.name }}</td>
+                                    <td> {{ j.phone_number }}</td>
+                                    <td>{{ j.address }},{{ j.pincode }}</td>
+                                    <td>{{ k.item_code}}</td>
+                                    <td>{{ i.quantity }}</td>
+                                    <td><a class="table_button" href="{% url 'accept' i.id %}">Accept</a></td>
+                                    <td><a class="table_button" href="{% url 'cancel' i.id %}">Cancel</a></td>
+                                </tr>
+                                {% endif %}
+                                {% endif%}
+                            {% endfor %}
+                        {% endfor %}
+                    {% endwith %}
+                {% endfor %}
+            </table>
+            <hr>
+            <hr>
+            <table class="w3-table-all w3-hoverable">
+              <caption ><b>PENDING ORDERS</b></caption>
+              <tr><th>#</th>
+                  <th style="width: 100px;">user name</th>
+                  <th>phone_number</th>
+                  <th>address ,pincode</th>
+                  <th>Item Code</th>
+                  <th>Quantity</th>
+                  <th></th>
+                  <th></th>
+              </tr>
+              {% for i in pending_orders %}
+                  {% with forloop.counter as outer_counter %}
+                  {% for j in user_details %}
+                      {% for k in item %}
+                          
+      
+                              {% if j.id == i.user_id %}
+                              {% if k.id == i.item_id%}
+                              <tr>
+                                  <td>{{ outer_counter }}</td>
+                                  <td>{{ j.name }}</td>
+                                  <td> {{ j.phone_number }}</td>
+                                  <td>{{ j.address }},{{ j.pincode }}</td>
+                                  <td>{{ k.item_code}}</td>
+                                  <td>{{ i.quantity }}</td>
+                                  <td><a class="table_button" href="{% url 'pending' i.id %}">Deliver</a></td>
+                                  <td><a class="table_button" href="{% url 'cancel' i.id %}">Cancel</a></td>
+                              </tr>
+                              {% endif %}
+                              {% endif%}
+                          {% endfor %}
+                      {% endfor %}
+                  {% endwith %}
+              {% endfor %}
+          </table>
+          <hr><hr>
+
+          <table class="w3-table-all w3-hoverable">
+            <caption ><b>DELIVERED ORDERS</b></caption>
+            <tr><th>#</th>
+                <th style="width: 100px;">user name</th>
+                <th>phone_number</th>
+                <th>address ,pincode</th>
+                <th>Item Code</th>
+                <th>Quantity</th>
+                
+            </tr>
+            {% for i in delivered_orders %}
+                {% with forloop.counter as outer_counter %}
+                {% for j in user_details %}
+                    {% for k in item %}
+                        
+    
+                            {% if j.id == i.user_id %}
+                            {% if k.id == i.item_id%}
+                            <tr>
+                                <td>{{ outer_counter }}</td>
+                                <td>{{ j.id }}</td>
+                                <td> {{ j.phone_number }}</td>
+                                <td>{{ j.address }},{{ j.pincode }}</td>
+                                <td>{{ k.item_code}}</td>
+                                <td>{{ i.quantity }}</td>
+                                <!-- <td><a href="">Delivered</a></td> -->
+                                <!-- <td><button>Cancel</button></td> -->
+                            </tr>
+                            {% endif %}
+                            {% endif%}
+                        {% endfor %}
+                    {% endfor %}
+                {% endwith %}
+            {% endfor %}
+        </table>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const sidebarLinks = document.querySelectorAll('.sidebar ul li a');
+
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            sidebarLinks.forEach(item => item.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+});
+
+    </script>
+</body>
+</html>

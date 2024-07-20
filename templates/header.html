@@ -245,7 +245,7 @@ nav a:hover {
   }
   .row1 .row .col-sm-3 i{
     margin: 0px;
-    padding: 20px;
+    padding: 30px 10px;
   }
   .row1 .col-sm-3 .srch{
     background-color: transparent;
@@ -281,49 +281,31 @@ nav a:hover {
                   <nav>
                       <div class="dropdown">
                           <a href="{% url 'user_home' %}"><span>Home</span></a>
-                          <div class="dropdown-content">
-                              <a href="{% url 'user_home' %}">Static Home</a>
-                              <a href="#">Slider Home</a>
-                          </div>
+                          
                       </div>
                       <a href="{% url 'about' %}">About</a>
                       <div class="dropdown">
-                          <a href="#">Pages</a>
-                          <div class="dropdown-content">
-                              <a href="{% url 'notfound' %}">404</a>
-                              <a href="{% url 'about' %}">About</a>
-                              <a href="{% url 'cart' %}">Cart</a>
-                              <a href="{% url 'checkout' %}">Check out</a>
-                              <a href="{% url 'contact' %}">Contact</a>
-                              <a href="{% url 'news' %}">News</a>
-                              <a href="{% url 'shop' %}">Shop</a>
-                          </div> 
+                          <a href="{% url 'dealofthemonth' %}">Offers</a>
+                           
                       </div>
                       <div class="dropdown">
                           <a href="{% url 'news' %}">News</a>
-                          <div class="dropdown-content">
-                              <a href="{% url 'news' %}">News</a>
-                              <a href="#">Single News</a>
-                          </div>
+                         
                       </div>
                       <a href="{% url 'contact' %}">Contact</a>
                       <div class="dropdown">
                           <a href="{% url 'shop' %}">Shop</a>
-                          <div class="dropdown-content">
-                              <a href="{% url 'shop' %}">Shop</a>
-                              <a href="{% url 'checkout' %}">Check Out</a>
-                              <a href="#">Single Prodcut</a>
-                              <a href="{% url 'cart' %}">Cart</a>
-                          </div>
+                          
                       </div>
                   </nav>
               </div>
               <div class="col-sm-3">
+                  <a href="{% url 'user_notification' %}"><i class="fa-solid fa-bell"></i><span class="badge">{{ count }}</span></a>
                   <a href="{% url 'cart' %}"><i class='fas fa-shopping-cart'></i></a>
                   <div class="dropdown">
                     <a href=""><i class="fa-solid fa-user"> {{ request.user.name }}</i></a>
                     <div class="dropdown-content" style="color: black;">
-                        <a href="">My Profile</a>
+                        <a href="{% url 'profile' %}">My Profile</a>
                         <a href="{% url 'logout' %}">LOGOUT</a>
                     </div>
                   </div>
@@ -347,7 +329,7 @@ nav a:hover {
                             <a href="{% url 'notfound' %}">404</a>
                             <a href="{% url 'about' %}">About</a>
                             <a href="{% url 'cart' %}">Cart</a>
-                            <a href="{% url 'checkout' %}">Check out</a>
+                            <a href="{% url 'dealofthemonth' %}">Check out</a>
                             <a href="{% url 'contact' %}">Contact</a>
                             <a href="{% url 'news' %}">News</a>
                             <a href="{% url 'shop' %}">Shop</a>
@@ -365,7 +347,7 @@ nav a:hover {
                         <a href="{% url 'shop' %}">Shop</a>
                         <div class="dropdown-content">
                             <a href="{% url 'shop' %}">Shop</a>
-                            <a href="{% url 'checkout' %}">Check Out</a>
+                            <a href="{% url 'dealofthemonth' %}">Check Out</a>
                             <a href="#">Single Prodcut</a>
                             <a href="{% url 'cart' %}">Cart</a>
                         </div>

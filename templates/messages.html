@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+   <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    transition: background 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #34495e;
+}
+
+.main-content {
+    margin-left: 250px; /* Add the width of the sidebar */
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #ecf0f1;
+    height: 100vh;
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.header {
+    background-color: #3498db;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.info-cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.card p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #3498db;
+}
+.sidebar ul li a:hover, .sidebar ul li a.active {
+    background-color: #34495e;
+}
+table{
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+}
+tr{
+    width: fit-content;
+    padding: 5px 0px;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 5px 0px;
+}* {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+}
+
+.notification-page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+header {
+    background-color: #fff;
+    padding: 20px;
+    text-align: left;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.notification-list {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.notification-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.notification-type {
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.joined {
+    background-color: #28a745;
+}
+
+.message {
+    background-color: #ffc107;
+}
+
+.comment {
+    background-color: #6f42c1;
+}
+
+.connect {
+    background-color: #17a2b8;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #dc3545;
+}
+
+.description {
+    margin: 10px 0;
+    color: #6c757d;
+}
+
+.user {
+    color: #007bff;
+}
+
+.notification-footer {
+    text-align: right;
+    color: #6c757d;
+}
+
+.timestamp {
+    font-size: 12px;
+}
+.sidebar img{
+    height: 10%;
+    width: 90%;
+    
+}
+
+   </style>
+</head>
+<body>
+    <div class="sidebar">
+        <img src="{% static 'images/logo.png' %}" alt="">
+        <ul>
+            <li><a href="{% url 'admin_dashboard' %}" class="active" id="dashboard">Dashboard</a></li>
+            <li><a href="{% url 'customers' %}" id="users">Users</a></li>
+            <li><a href="{% url 'offers' %}" id="offer">offer</a></li>
+            <li><a href="{% url 'items' %}" id="items">Items</a></li>
+            <li><a href="{% url 'notifications' %}" id="items">Notifications</a></li>
+            <li><a href="{% url 'order_details' %}" id="items">Order Details</a></li>
+            <li><a href="{% url 'messages' %}" id="items">Messages</a></li>
+            <li><a href="{% url 'logout' %}" id="logout">Logout</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <h1>Messages</h1>
+        </div>
+        <div class="notification-page">
+            <!-- <header>
+                <h1>Messages</h1>
+            </header> -->
+            <section class="notification-list" id="notification-list">
+                 {% for i in message %}
+                <div class="notification-item">
+                    <p><strong>New message from <span style="text-transform: uppercase;">{{i.name}}</span></strong></p>
+                    <p>{{ i.subject }}</p>
+                    <p class="description">{{ i.message }}</p>
+                    <p class="user">{{ i.email }}</p>
+                    <p class="user">{{ i.phone_number }}</p>
+                    <div class="notification-footer">
+                        <span class="timestamp">{{ i.enquiry_time }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </section>
+        </div>
+        
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const sidebarLinks = document.querySelectorAll('.sidebar ul li a');
+
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            sidebarLinks.forEach(item => item.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+});
+function removeNotification(button) {
+    const notificationItem = button.closest('.notification-item');
+    notificationItem.remove();
+}
+
+// Sample data to dynamically generate notifications (to be replaced with actual data in a real application)
+
+
+function generateNotifications() {
+    const notificationList = document.getElementById('notification-list');
+    notifications.forEach(notification => {
+        const notificationItem = document.createElement('div');
+        notificationItem.className = 'notification-item';
+        notificationItem.innerHTML = `
+            <div class="notification-header">
+                <span class="notification-type ${notification.category}">${notification.type}</span>
+                <button class="close-button" onclick="removeNotification(this)">×</button>
+            </div>
+            <p><strong>${notification.message}</strong></p>
+            <p class="description">${notification.description}</p>
+            <p class="user">${notification.user}</p>
+            <div class="notification-footer">
+                <span class="timestamp">${notification.timestamp}</span>
+            </div>
+        `;
+        notificationList.appendChild(notificationItem);
+    });
+}
+
+generateNotifications();
+
+
+    </script>
+</body>
+</html>

@@ -68,3 +68,24 @@ class OFFER(models.Model):
     validity = models.DateTimeField(blank=True, null=True)
     percentage = models.IntegerField(null=True, blank=True)
     quantity = models.IntegerField(null=True, blank=True)
+    offer_price = models.DecimalField(decimal_places=2, max_digits=7, null=True, blank=True)
+
+class CONTACT(models.Model):
+    name = models.CharField(max_length=30, null=True, blank=True)
+    phone_number = models.CharField(max_length=13, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True, unique=True)
+    subject = models.CharField(max_length=6, null=True, blank=True)
+    message = models.CharField(max_length=555, null=True, blank=True)
+    enquiry_time = models.DateTimeField(blank=True, null=True)
+
+
+class NOTIFICATION(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField()
+    read = models.BooleanField(default=False)
+    date = models.DateTimeField(auto_now_add=True)
+    table_no = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return self.text
+
